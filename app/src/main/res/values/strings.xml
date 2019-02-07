@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Remind My Product</string>
     <string name="nella_tua_dispensa_ci_sono">Nella tua dispensa ci sono</string>
+    <string name="placeholder_numbers">XXX</string>
+    <string name="prodotti_scaduti">prodotti scaduti</string>
+    <string name="per_un_totale_di">per un totale di</string>
+    <string name="placeholder_price">0,00 €</string>
+    <string name="placeholder_suggestion">suggestion</string>
 </resources>
