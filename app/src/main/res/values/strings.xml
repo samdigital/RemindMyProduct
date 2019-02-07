@@ -6,4 +6,6 @@
     <string name="per_un_totale_di">per un totale di</string>
     <string name="placeholder_price">0,00 €</string>
     <string name="placeholder_suggestion">suggestion</string>
+    <string name="report_suggest_bad">Puoi fare di meglio...</string>
+    <string name="report_suggest_good">Perfetto! Continua così</string>
 </resources>
