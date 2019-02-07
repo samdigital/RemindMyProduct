@@ -2,13 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:paddingLeft="20dp"
+    android:background="@android:color/holo_orange_light"
+    >
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        app:srcCompat="@android:color/holo_orange_light" />
+        android:layout_height="30dp"
+        />
 
     <TextView
         android:layout_width="match_parent"
@@ -18,5 +21,22 @@
         android:background="@android:color/holo_orange_light"
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:text="Progetto di Design of Mobile Applications"
+        android:textSize="10dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:text="a cura di Paolo De Reggi e Samuele Ziero"
+        android:textSize="10dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="18dp"
+        android:text="dereggi.paolo@spes.uniud.it ziero.samuele@spes.uniud.it"
+        android:textSize="8dp" />
 
 </LinearLayout>

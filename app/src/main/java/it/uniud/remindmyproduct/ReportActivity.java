@@ -34,6 +34,7 @@ public class ReportActivity extends AppCompatActivity {
 
         toolbar=(Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        setTitle(R.string.title_activity_report);
 
         num_of_product_text=(TextView) findViewById(R.id.reportNumeroProdotti);
         value_of_product_text=(TextView) findViewById(R.id.reportValoreEuro);
