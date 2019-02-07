@@ -8,4 +8,6 @@
     <string name="placeholder_suggestion">suggestion</string>
     <string name="report_suggest_bad">Puoi fare di meglio...</string>
     <string name="report_suggest_good">Perfetto! Continua così</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 </resources>

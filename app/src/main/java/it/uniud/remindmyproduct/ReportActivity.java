@@ -1,10 +1,21 @@
 package it.uniud.remindmyproduct;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ReportActivity extends AppCompatActivity {
+
+    DrawerLayout drawer;
+    NavigationView navigationView;
+    Toolbar toolbar;
 
     private int num_of_product;
     private double value_of_product;
@@ -16,10 +27,13 @@ public class ReportActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_report);
+        setContentView(R.layout.activity_drawer);
 
-        num_of_product=15;
-        value_of_product=89.56;
+        num_of_product=0;
+        value_of_product=15;
+
+        toolbar=(Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         num_of_product_text=(TextView) findViewById(R.id.reportNumeroProdotti);
         value_of_product_text=(TextView) findViewById(R.id.reportValoreEuro);
@@ -36,6 +50,26 @@ public class ReportActivity extends AppCompatActivity {
             suggestion_text.setText(getString(R.string.report_suggest_good));
             emoticon_text.setText(getEmojiByUnicode(0x1F60A));
         }
+
+
+        drawer=(DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.open, R.string.close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        navigationView=(NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+                    case R.id.drawer_home:
+                        Toast.makeText(getApplicationContext(), "dhone", Toast.LENGTH_SHORT).show();
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+        });
     }
 
     public String getEmojiByUnicode(int unicode){
