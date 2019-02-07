@@ -27,10 +27,10 @@ public class ReportActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_drawer);
+        setContentView(R.layout.activity_report_drawer);
 
         num_of_product=0;
-        value_of_product=15;
+        value_of_product=0;
 
         toolbar=(Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -41,7 +41,7 @@ public class ReportActivity extends AppCompatActivity {
         emoticon_text=(TextView) findViewById(R.id.reportEmoticon);
 
         num_of_product_text.setText(String.valueOf(num_of_product));
-        value_of_product_text.setText(String.format("%.2f", value_of_product)+" €");
+        value_of_product_text.setText(String.format("%.2f", value_of_product)+getString(R.string.currency));
 
         if(num_of_product>0) {
             suggestion_text.setText(getString(R.string.report_suggest_bad));

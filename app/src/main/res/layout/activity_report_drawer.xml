@@ -18,6 +18,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:menu="@menu/activity_main_drawer"
+        app:headerLayout="@layout/drawer_header"
         />
 
 </android.support.v4.widget.DrawerLayout>
