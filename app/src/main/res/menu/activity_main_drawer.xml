@@ -2,8 +2,25 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:title="Test1"
+        android:title="Home"
         android:id="@+id/drawer_home"
+        android:icon="@drawable/icon_home"
         />
+    <item
+        android:title="La Mia Dispensa"
+        android:id="@+id/drawer_dispensa"
+        android:icon="@drawable/icon_lista"
+        />
+    <item
+        android:title="Report"
+        android:id="@+id/drawer_report"
+        android:icon="@drawable/icon_report"
+        />
+    <item
+        android:title="Notifiche"
+        android:id="@+id/drawer_notifica"
+        android:icon="@drawable/icon_notifica"
+        />
+
 
 </menu>
