@@ -4,10 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/drawer_layout">
+    android:id="@+id/main_drawer_layout"
+    >
 
     <include
-        layout="@layout/activity_report"
+        layout="@layout/activity_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />

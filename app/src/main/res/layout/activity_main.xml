@@ -6,13 +6,99 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <ImageView
+        android:id="@+id/clessidra"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ho fatto modifiche! Anche io"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:srcCompat="@drawable/icon_clessidra" />
+
+    <TextView
+        android:id="@+id/label_prodotti_in_scadenza"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="PRODOTTI IN SCADENZA"
+        android:textSize="22dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/clessidra"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <TextView
+        android:id="@+id/product_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="prodotto1"
+        android:textSize="18dp"
+        app:layout_constraintStart_toStartOf="@+id/label_prodotti_in_scadenza"
+        app:layout_constraintTop_toBottomOf="@+id/label_prodotti_in_scadenza" />
+
+    <TextView
+        android:id="@+id/product_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:text="prodotto2"
+        android:textSize="18dp"
+        app:layout_constraintStart_toStartOf="@+id/label_prodotti_in_scadenza"
+        app:layout_constraintTop_toBottomOf="@+id/product_1" />
+
+    <TextView
+        android:id="@+id/product_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:text="prodotto3"
+        android:textSize="18dp"
+        app:layout_constraintStart_toStartOf="@+id/label_prodotti_in_scadenza"
+        app:layout_constraintTop_toBottomOf="@+id/product_2" />
+
+
+    <Button
+        android:id="@+id/label_lamiadispensa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:text="LA MIA DISPENSA"
+        android:textSize="22dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/label_prodotti_in_scadenza"
+        app:layout_constraintTop_toBottomOf="@+id/product_3" />
+
+    <Button
+        android:id="@+id/label_aggiungi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="AGGIUNGI PRODOTTO"
+        android:textSize="22dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/label_prodotti_in_scadenza"
+        app:layout_constraintTop_toBottomOf="@+id/label_lamiadispensa" />
+
+
+
 
 </android.support.constraint.ConstraintLayout>
