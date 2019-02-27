@@ -41,15 +41,14 @@ public class MainActivity extends AppCompatActivity {
                 switch (menuItem.getItemId()) {
                     case R.id.drawer_home:
                         //Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                        Toast.makeText(getApplicationContext(), "Home", Toast.LENGTH_SHORT).show();
-                        drawer.closeDrawers();
                         //startActivity(intent);
+                        drawer.closeDrawers();
                         return true;
 
                     case R.id.drawer_report:
                         Intent intent = new Intent(getApplicationContext(), ReportActivity.class);
-                        drawer.closeDrawers();
                         startActivity(intent);
+                        drawer.closeDrawers();
                         return true;
 
                     default:

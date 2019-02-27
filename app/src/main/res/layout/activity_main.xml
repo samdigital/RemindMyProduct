@@ -49,7 +49,7 @@
         android:id="@+id/product_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:text="prodotto1"
         android:textSize="18dp"
         app:layout_constraintStart_toStartOf="@+id/label_prodotti_in_scadenza"
@@ -75,22 +75,34 @@
         app:layout_constraintStart_toStartOf="@+id/label_prodotti_in_scadenza"
         app:layout_constraintTop_toBottomOf="@+id/product_2" />
 
+    <Button
+        android:id="@+id/view_all"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Vedi Tutti >>"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="@+id/label_prodotti_in_scadenza"
+        app:layout_constraintTop_toBottomOf="@+id/product_3" />
+
 
     <Button
         android:id="@+id/label_lamiadispensa"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@android:color/holo_orange_light"
         android:layout_marginTop="35dp"
         android:text="LA MIA DISPENSA"
         android:textSize="22dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/label_prodotti_in_scadenza"
-        app:layout_constraintTop_toBottomOf="@+id/product_3" />
+        app:layout_constraintTop_toBottomOf="@+id/view_all" />
 
     <Button
         android:id="@+id/label_aggiungi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@android:color/holo_orange_light"
         android:layout_marginTop="25dp"
         android:text="AGGIUNGI PRODOTTO"
         android:textSize="22dp"

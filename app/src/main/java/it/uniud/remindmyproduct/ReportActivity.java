@@ -1,5 +1,6 @@
 package it.uniud.remindmyproduct;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -62,10 +63,19 @@ public class ReportActivity extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()){
+                switch (menuItem.getItemId()) {
                     case R.id.drawer_home:
-                        Toast.makeText(getApplicationContext(), "dhone", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
+                        drawer.closeDrawers();
                         return true;
+
+                    case R.id.drawer_report:
+                        //Intent intent = new Intent(getApplicationContext(), ReportActivity.class);
+                        //startActivity(intent);
+                        drawer.closeDrawers();
+                        return true;
+
                     default:
                         return false;
                 }
