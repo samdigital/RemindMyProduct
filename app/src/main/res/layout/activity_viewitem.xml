@@ -160,7 +160,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="16dp"
-        android:text="Prodotto Aperto/Chiuso"
+        android:text="Prodotto Chiuso/Aperto"
         android:textColor="@android:color/tab_indicator_text"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"

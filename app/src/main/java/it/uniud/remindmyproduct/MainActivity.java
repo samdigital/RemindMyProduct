@@ -40,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.drawer_home:
-                        //Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                        //startActivity(intent);
+                        //Intent intentHome = new Intent(getApplicationContext(), MainActivity.class);
+                        //startActivity(intentHome);
                         drawer.closeDrawers();
                         return true;
 
