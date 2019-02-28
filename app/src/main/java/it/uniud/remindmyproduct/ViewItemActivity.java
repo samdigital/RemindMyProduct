@@ -96,7 +96,7 @@ public class ViewItemActivity extends AppCompatActivity {
     private AlertDialog consuma(int quantity) {
         if (quantity == 0) {
             AlertDialog consumaTutto = new AlertDialog.Builder(this)
-                    .setTitle("Consuma tutto")
+                    .setTitle(R.string.consuma_tutto)
                     .setMessage("Vuoi rimuovere questo prodotto dalla tua dispensa?")
                     .setIcon(R.drawable.icon_check)
 
@@ -120,7 +120,7 @@ public class ViewItemActivity extends AppCompatActivity {
             numberPicker.setMinValue(1);
             AlertDialog consumaInParte = new AlertDialog.Builder(this)
                     .setView(numberPicker)
-                    .setTitle("Consuma in parte")
+                    .setTitle(R.string.consuma_in_parte)
                     .setMessage("Seleziona la quantità di prodotto che hai consumato")
                     .setIcon(R.drawable.icon_check)
 

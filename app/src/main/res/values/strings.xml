@@ -12,4 +12,16 @@
     <string name="close">Close</string>
     <string name="currency">€</string>
     <string name="title_activity_report">Report</string>
+    <string name="prodotto">Prodotto</string>
+    <string name="descrizione_prodotto">Descrizione Prodotto</string>
+    <string name="quantita">Quantità:</string>
+    <string name="xx_pezzi">XX pezzi</string>
+    <string name="data_di_scadenza">Data di Scadenza:</string>
+    <string name="placeholder_data">01/01/2019</string>
+    <string name="prezzo">Prezzo:</string>
+    <string name="placeholder_valore">0,00 €</string>
+    <string name="data_di_inserimento">Data di Inserimento:</string>
+    <string name="prodotto_chiuso_aperto">Prodotto Chiuso/Aperto</string>
+    <string name="consuma_tutto">CONSUMA TUTTO</string>
+    <string name="consuma_in_parte">CONSUMA IN PARTE</string>
 </resources>
