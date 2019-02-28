@@ -30,7 +30,7 @@ public class ReportActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report_drawer);
 
-        num_of_product=0;
+        num_of_product=5;
         value_of_product=0;
 
         toolbar=(Toolbar) findViewById(R.id.toolbar);
@@ -47,7 +47,7 @@ public class ReportActivity extends AppCompatActivity {
 
         if(num_of_product>0) {
             suggestion_text.setText(getString(R.string.report_suggest_bad));
-            emoticon_text.setText(getEmojiByUnicode(0x1F620));
+            emoticon_text.setText(getEmojiByUnicode(0x1F625));
         } else {
             suggestion_text.setText(getString(R.string.report_suggest_good));
             emoticon_text.setText(getEmojiByUnicode(0x1F60A));
