@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ReportActivity"></activity>
+        <activity android:name=".ViewItemActivity"></activity>
     </application>
 
 </manifest>

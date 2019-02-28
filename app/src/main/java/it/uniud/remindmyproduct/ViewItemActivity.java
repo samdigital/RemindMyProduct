@@ -9,9 +9,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class ViewItemActivity extends AppCompatActivity {
 
     DrawerLayout drawer;
     NavigationView navigationView;
@@ -21,15 +20,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //setContentView(R.layout.activity_main);
-        setContentView(R.layout.activity_main_drawer);
+        setContentView(R.layout.activity_viewitem_drawer);
 
 
         toolbar=(Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        setTitle("Remind My Product");
+        setTitle("Dettaglio Prodotto");
 
-        drawer=(DrawerLayout) findViewById(R.id.main_drawer_layout);
+        drawer=(DrawerLayout) findViewById(R.id.viewitem_drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.open, R.string.close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
@@ -46,14 +44,8 @@ public class MainActivity extends AppCompatActivity {
                         return true;
 
                     case R.id.drawer_report:
-                        Intent intentReport = new Intent(getApplicationContext(), ReportActivity.class);
-                        startActivity(intentReport);
-                        drawer.closeDrawers();
-                        return true;
-
-                    case R.id.drawer_dispensa:
-                        Intent intentDispensa = new Intent(getApplicationContext(), ViewItemActivity.class);
-                        startActivity(intentDispensa);
+                        Intent intent = new Intent(getApplicationContext(), ReportActivity.class);
+                        startActivity(intent);
                         drawer.closeDrawers();
                         return true;
 
