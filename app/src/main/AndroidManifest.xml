@@ -16,8 +16,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ReportActivity"></activity>
-        <activity android:name=".ViewItemActivity"></activity>
+        <activity android:name=".NotificheActivity" />
+        <activity android:name=".ReportActivity" />
+        <activity android:name=".ViewItemActivity" />
+
+
     </application>
 
 </manifest>

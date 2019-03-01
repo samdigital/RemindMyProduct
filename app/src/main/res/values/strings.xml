@@ -24,4 +24,8 @@
     <string name="prodotto_chiuso_aperto">Prodotto Chiuso/Aperto</string>
     <string name="consuma_tutto">CONSUMA TUTTO</string>
     <string name="consuma_in_parte">CONSUMA IN PARTE</string>
+    <string name="scadenza_notifiche">DATA DI SCADENZA</string>
+    <string name="testo_scadenza_notifiche">Indica quanti giorni prima vuoi essere avvisato</string>
+    <string name="quantita_notifiche">QUANTITA\'</string>
+    <string name="testo_quantita_notifiche">Indica a quanti pezzi mancanti vieni avvisato</string>
 </resources>
