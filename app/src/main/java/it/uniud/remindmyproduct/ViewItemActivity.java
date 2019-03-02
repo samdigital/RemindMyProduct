@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.NumberPicker;
+import android.widget.Toast;
 
 public class ViewItemActivity extends AppCompatActivity {
 
@@ -96,17 +97,17 @@ public class ViewItemActivity extends AppCompatActivity {
         if (quantity == 0) {
             AlertDialog consumaTutto = new AlertDialog.Builder(this)
                     .setTitle(R.string.consuma_tutto)
-                    .setMessage("Vuoi rimuovere questo prodotto dalla tua dispensa?")
+                    .setMessage(R.string.domanda_vuoi_rimuovere_prodotto)
                     .setIcon(R.drawable.icon_check)
 
-                    .setPositiveButton("Sì", new DialogInterface.OnClickListener() {
+                    .setPositiveButton(R.string.si, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int whichButton) {
-                            //your deleting code
+                            //codice per eliminare da DB
                             dialog.dismiss();
                         }
                     })
 
-                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
                         }
@@ -120,18 +121,21 @@ public class ViewItemActivity extends AppCompatActivity {
             AlertDialog consumaInParte = new AlertDialog.Builder(this)
                     .setView(numberPicker)
                     .setTitle(R.string.consuma_in_parte)
-                    .setMessage("Seleziona la quantità di prodotto che hai consumato")
+                    .setMessage(R.string.seleziona_prodotto_consumato)
                     .setIcon(R.drawable.icon_check)
 
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int whichButton) {
-                            //your deleting code
+                            int numero = numberPicker.getValue();
+
+                            Toast.makeText(getApplicationContext(), String.valueOf(numero), Toast.LENGTH_LONG).show();
+                            //codice per eliminare da DB
                             dialog.dismiss();
                         }
 
                     })
 
-                    .setNegativeButton("Annulla", new DialogInterface.OnClickListener() {
+                    .setNegativeButton(R.string.undo, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
                         }

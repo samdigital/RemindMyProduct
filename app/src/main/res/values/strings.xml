@@ -28,4 +28,14 @@
     <string name="testo_scadenza_notifiche">Indica quanti giorni prima vuoi essere avvisato</string>
     <string name="quantita_notifiche">QUANTITA\'</string>
     <string name="testo_quantita_notifiche">Indica a quanti pezzi mancanti vieni avvisato</string>
+    <string name="si">Sì</string>
+    <string name="no">No</string>
+    <string name="seleziona_prodotto_consumato">Seleziona la quantità di prodotto che hai consumato</string>
+    <string name="ok">OK</string>
+    <string name="undo">Annulla</string>
+    <string name="domanda_vuoi_rimuovere_prodotto">Vuoi rimuovere questo prodotto dalla tua dispensa?</string>
+    <string name="aggiungi_prodotto">AGGIUNGI PRODOTTO</string>
+    <string name="la_mia_dispensa">LA MIA DISPENSA</string>
+    <string name="vedi_tutti"><![CDATA[Vedi Tutti >>]]></string>
+    <string name="prodotti_in_scadenza">PRODOTTI IN SCADENZA</string>
 </resources>
