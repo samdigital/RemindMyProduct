@@ -13,7 +13,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.NumberPicker;
+import android.widget.Switch;
 import android.widget.Toast;
 
 public class ViewItemActivity extends AppCompatActivity {
@@ -22,11 +24,15 @@ public class ViewItemActivity extends AppCompatActivity {
     NavigationView navigationView;
     Toolbar toolbar;
 
+    int product_id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_viewitem_drawer);
+        // recupero id che mi è stato passato dalla lista... mi serve per il db
+        product_id = getIntent().getIntExtra("product_id", 0);
 
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -90,7 +96,27 @@ public class ViewItemActivity extends AppCompatActivity {
             }
         });
 
+        Switch aperto;
+        final boolean statusProductOpen=true;
+        aperto = (Switch) findViewById(R.id.productopened);
+        aperto.setChecked(statusProductOpen);
+        aperto.setClickable(!statusProductOpen);
 
+        aperto.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    AlertDialog dialog = apri(buttonView);
+                    dialog.show();
+                    //Toast.makeText(getApplicationContext(), "Aperto", Toast.LENGTH_LONG).show();
+                } else {
+                    //Toast.makeText(getApplicationContext(), "Chiuso", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+
+        //Toast.makeText(getApplicationContext(), String.valueOf(product_id), Toast.LENGTH_LONG).show();
     }
 
     private AlertDialog consuma(int quantity) {
@@ -145,6 +171,30 @@ public class ViewItemActivity extends AppCompatActivity {
                     .create();
             return consumaInParte;
         }
+    }
+
+    private AlertDialog apri(final CompoundButton buttonView) {
+        AlertDialog confermaApri = new AlertDialog.Builder(this)
+                .setTitle(R.string.apri_prodotto)
+                .setMessage(R.string.conferma_apertura)
+                .setIcon(R.drawable.icon_check)
+
+                .setPositiveButton(R.string.si, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        buttonView.setClickable(false);
+                        dialog.dismiss();
+
+                    }
+                })
+
+                .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        buttonView.setChecked(false);
+                        dialog.dismiss();
+                    }
+                })
+                .create();
+        return confermaApri;
     }
 
 }

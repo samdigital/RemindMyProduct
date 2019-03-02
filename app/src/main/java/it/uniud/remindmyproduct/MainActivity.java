@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
                     case R.id.drawer_dispensa:
                         Intent intentDispensa = new Intent(getApplicationContext(), ViewItemActivity.class);
+                        intentDispensa.putExtra("product_id", 87978);
                         startActivity(intentDispensa);
                         drawer.closeDrawers();
                         return true;

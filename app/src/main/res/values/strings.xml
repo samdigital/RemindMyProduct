@@ -38,4 +38,6 @@
     <string name="la_mia_dispensa">LA MIA DISPENSA</string>
     <string name="vedi_tutti"><![CDATA[Vedi Tutti >>]]></string>
     <string name="prodotti_in_scadenza">PRODOTTI IN SCADENZA</string>
+    <string name="apri_prodotto">APRI PRODOTTO</string>
+    <string name="conferma_apertura">Confermi di aver aperto questo prodotto?</string>
 </resources>
