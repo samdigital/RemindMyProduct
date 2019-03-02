@@ -104,6 +104,7 @@ public class ViewItemActivity extends AppCompatActivity {
                         public void onClick(DialogInterface dialog, int whichButton) {
                             //codice per eliminare da DB
                             dialog.dismiss();
+                            finish();
                         }
                     })
 
@@ -131,6 +132,7 @@ public class ViewItemActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), String.valueOf(numero), Toast.LENGTH_LONG).show();
                             //codice per eliminare da DB
                             dialog.dismiss();
+                            finish();
                         }
 
                     })
