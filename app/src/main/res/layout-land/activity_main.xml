@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -16,87 +15,98 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/clessidra"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="15dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:srcCompat="@drawable/icon_clessidra" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-        <LinearLayout
-            android:layout_width="391dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/product_3"
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/layout_sx"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:text="prodotto3"
-                android:textSize="18dp"
-                app:layout_constraintStart_toStartOf="@+id/label_prodotti_in_scadenza"
-                app:layout_constraintTop_toBottomOf="@+id/product_2" />
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/product_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="prodotto1"
-                android:textSize="18dp"
-                app:layout_constraintStart_toStartOf="@+id/label_prodotti_in_scadenza"
-                app:layout_constraintTop_toBottomOf="@+id/label_prodotti_in_scadenza" />
+                <ImageView
+                    android:id="@+id/clessidra"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/icon_clessidra" />
 
-            <TextView
-                android:id="@+id/label_prodotti_in_scadenza"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:text="@string/prodotti_in_scadenza"
-                android:textSize="22dp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/clessidra"
-                app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+                <TextView
+                    android:id="@+id/label_prodotti_in_scadenza"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:text="@string/prodotti_in_scadenza"
+                    android:textSize="22dp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/clessidra"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/product_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:text="prodotto2"
-                android:textSize="18dp"
-                app:layout_constraintStart_toStartOf="@+id/label_prodotti_in_scadenza"
-                app:layout_constraintTop_toBottomOf="@+id/product_1" />
+                <TextView
+                    android:id="@+id/product_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="prodotto1"
+                    android:textSize="18dp"
+                    app:layout_constraintStart_toStartOf="@+id/label_prodotti_in_scadenza"
+                    app:layout_constraintTop_toBottomOf="@+id/label_prodotti_in_scadenza" />
 
-            <Button
-                android:id="@+id/view_all"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="@string/vedi_tutti"
-                android:textSize="20dp"
-                app:layout_constraintStart_toStartOf="@+id/label_prodotti_in_scadenza"
-                app:layout_constraintTop_toBottomOf="@+id/product_3" />
+                <TextView
+                    android:id="@+id/product_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:text="prodotto2"
+                    android:textSize="18dp"
+                    app:layout_constraintStart_toStartOf="@+id/label_prodotti_in_scadenza"
+                    app:layout_constraintTop_toBottomOf="@+id/product_1" />
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/product_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:text="prodotto3"
+                    android:textSize="18dp"
+                    app:layout_constraintStart_toStartOf="@+id/label_prodotti_in_scadenza"
+                    app:layout_constraintTop_toBottomOf="@+id/product_2" />
+
+                <Button
+                    android:id="@+id/view_all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/vedi_tutti"
+                    android:textSize="20dp"
+                    app:layout_constraintStart_toStartOf="@+id/label_prodotti_in_scadenza"
+                    app:layout_constraintTop_toBottomOf="@+id/product_3" />
+            </android.support.constraint.ConstraintLayout>
+        </ScrollView>
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -107,7 +117,7 @@
                 android:id="@+id/label_aggiungi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="50dp"
                 android:background="@color/colorLightGreen"
                 android:text="@string/aggiungi_prodotto"
                 android:textSize="22dp"
@@ -119,7 +129,7 @@
                 android:id="@+id/label_lamiadispensa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="35dp"
+                android:layout_marginTop="30dp"
                 android:background="@color/colorLightGreen"
                 android:text="@string/la_mia_dispensa"
                 android:textSize="22dp"
@@ -127,7 +137,6 @@
                 app:layout_constraintStart_toStartOf="@+id/label_prodotti_in_scadenza"
                 app:layout_constraintTop_toBottomOf="@+id/view_all" />
         </LinearLayout>
-
     </LinearLayout>
 
 

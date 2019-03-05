@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ReportActivity">
+
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/reportNumeroProdotti"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="30dp"
+            android:text="@string/placeholder_numbers"
+            android:textColor="@color/colorBlack"
+            android:textSize="35dp"
+            app:layout_constraintStart_toEndOf="@+id/reportInDispensa"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+        <TextView
+            android:id="@+id/reportInDispensa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:text="@string/nella_tua_dispensa_ci_sono"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="@+id/reportNumeroProdotti"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/reportNumeroProdotti" />
+
+        <TextView
+            android:id="@+id/reportEtichettaProdotti"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:text="@string/prodotti_scaduti"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="@+id/reportNumeroProdotti"
+            app:layout_constraintStart_toEndOf="@+id/reportNumeroProdotti"
+            app:layout_constraintTop_toTopOf="@+id/reportNumeroProdotti" />
+
+        <TextView
+            android:id="@+id/reportEtichettaValore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="15dp"
+            android:text="@string/per_un_totale_di"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="@+id/reportValoreEuro"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/reportValoreEuro" />
+
+        <TextView
+            android:id="@+id/reportValoreEuro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="30dp"
+            android:text="@string/placeholder_price"
+            android:textColor="@color/colorBlack"
+            android:textSize="35dp"
+            app:layout_constraintStart_toEndOf="@+id/reportEtichettaValore"
+            app:layout_constraintTop_toBottomOf="@+id/reportNumeroProdotti" />
+
+        <TextView
+            android:id="@+id/reportSuggest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:text="@string/placeholder_suggestion"
+            android:textColor="@color/colorBlack"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/reportEmoticon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/reportEmoticon" />
+
+        <TextView
+            android:id="@+id/reportEmoticon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="8dp"
+            android:text="@string/placeholder_suggestion"
+            android:textColor="@color/colorBlack"
+            android:textSize="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/reportValoreEuro" />
+
+
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>
