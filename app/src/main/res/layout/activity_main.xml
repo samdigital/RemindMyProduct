@@ -50,11 +50,10 @@
         android:id="@+id/product_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
         android:text="prodotto1"
         android:textSize="18dp"
-        app:layout_constraintStart_toStartOf="@+id/label_prodotti_in_scadenza"
-        app:layout_constraintTop_toBottomOf="@+id/label_prodotti_in_scadenza" />
+        tools:layout_editor_absoluteX="102dp"
+        tools:layout_editor_absoluteY="116dp" />
 
     <TextView
         android:id="@+id/product_2"

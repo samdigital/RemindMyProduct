@@ -97,7 +97,7 @@ public class ViewItemActivity extends AppCompatActivity {
         });
 
         Switch aperto;
-        final boolean statusProductOpen=true;
+        final boolean statusProductOpen=false;
         aperto = (Switch) findViewById(R.id.productopened);
         aperto.setChecked(statusProductOpen);
         aperto.setClickable(!statusProductOpen);
@@ -145,11 +145,14 @@ public class ViewItemActivity extends AppCompatActivity {
             final NumberPicker numberPicker = new NumberPicker(this);
             numberPicker.setMaxValue(quantity);
             numberPicker.setMinValue(1);
+
+
             AlertDialog consumaInParte = new AlertDialog.Builder(this)
                     .setView(numberPicker)
                     .setTitle(R.string.consuma_in_parte)
                     .setMessage(R.string.seleziona_prodotto_consumato)
                     .setIcon(R.drawable.icon_check)
+
 
                     .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int whichButton) {

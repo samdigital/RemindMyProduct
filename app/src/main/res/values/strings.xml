@@ -30,7 +30,7 @@
     <string name="testo_quantita_notifiche">Indica a quanti pezzi mancanti vieni avvisato</string>
     <string name="si">Sì</string>
     <string name="no">No</string>
-    <string name="seleziona_prodotto_consumato">Seleziona la quantità di prodotto che hai consumato</string>
+    <string name="seleziona_prodotto_consumato">Quanto prodotto hai consumato?</string>
     <string name="ok">OK</string>
     <string name="undo">Annulla</string>
     <string name="domanda_vuoi_rimuovere_prodotto">Vuoi rimuovere questo prodotto dalla tua dispensa?</string>
@@ -40,4 +40,5 @@
     <string name="prodotti_in_scadenza">PRODOTTI IN SCADENZA</string>
     <string name="apri_prodotto">APRI PRODOTTO</string>
     <string name="conferma_apertura">Confermi di aver aperto questo prodotto?</string>
+    <string name="la_mia_dispensa_minuscolo">La Mia Dispensa</string>
 </resources>

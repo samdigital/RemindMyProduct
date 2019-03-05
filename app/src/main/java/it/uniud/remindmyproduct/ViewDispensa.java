@@ -9,9 +9,10 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class ViewDispensa extends AppCompatActivity {
 
     DrawerLayout drawer;
     NavigationView navigationView;
@@ -20,47 +21,33 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        //setContentView(R.layout.activity_main);
-        setContentView(R.layout.activity_main_drawer);
+        setContentView(R.layout.activity_viewdispensa_drawer);
 
 
-        toolbar=(Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        setTitle("Remind My Product");
+        setTitle(R.string.la_mia_dispensa_minuscolo);
 
-        drawer=(DrawerLayout) findViewById(R.id.main_drawer_layout);
+
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.open, R.string.close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        navigationView=(NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.drawer_home:
-                        //Intent intentHome = new Intent(getApplicationContext(), MainActivity.class);
-                        //startActivity(intentHome);
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
                         drawer.closeDrawers();
                         return true;
 
                     case R.id.drawer_report:
-                        Intent intentReport = new Intent(getApplicationContext(), ReportActivity.class);
-                        startActivity(intentReport);
-                        drawer.closeDrawers();
-                        return true;
-
-                    case R.id.drawer_dispensa:
-                        Intent intentDispensa = new Intent(getApplicationContext(), ViewDispensa.class);
-                        intentDispensa.putExtra("in_scadenza", 0);
-                        startActivity(intentDispensa);
-                        drawer.closeDrawers();
-                        return true;
-
-                    case R.id.drawer_notifica:
-                        Intent intentNotifiche = new Intent(getApplicationContext(), NotificheActivity.class);
-                        startActivity(intentNotifiche);
+                        //Intent intent = new Intent(getApplicationContext(), ReportActivity.class);
+                        //startActivity(intent);
                         drawer.closeDrawers();
                         return true;
 
@@ -70,4 +57,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 }

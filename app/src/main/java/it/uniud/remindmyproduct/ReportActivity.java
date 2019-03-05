@@ -65,14 +65,27 @@ public class ReportActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.drawer_home:
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(intent);
+                        //Intent intentHome = new Intent(getApplicationContext(), MainActivity.class);
+                        //startActivity(intentHome);
                         drawer.closeDrawers();
                         return true;
 
                     case R.id.drawer_report:
-                        //Intent intent = new Intent(getApplicationContext(), ReportActivity.class);
-                        //startActivity(intent);
+                        Intent intentReport = new Intent(getApplicationContext(), ReportActivity.class);
+                        startActivity(intentReport);
+                        drawer.closeDrawers();
+                        return true;
+
+                    case R.id.drawer_dispensa:
+                        Intent intentDispensa = new Intent(getApplicationContext(), ViewItemActivity.class);
+                        intentDispensa.putExtra("product_id", 87978);
+                        startActivity(intentDispensa);
+                        drawer.closeDrawers();
+                        return true;
+
+                    case R.id.drawer_notifica:
+                        Intent intentNotifiche = new Intent(getApplicationContext(), NotificheActivity.class);
+                        startActivity(intentNotifiche);
                         drawer.closeDrawers();
                         return true;
 
