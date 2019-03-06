@@ -9,7 +9,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.Toast;
+import android.view.View;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,6 +29,40 @@ public class MainActivity extends AppCompatActivity {
         toolbar=(Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setTitle("Remind My Product");
+
+        Button viewInScadenza;
+        Button laMiaDispensa;
+        Button addProduct;
+
+        viewInScadenza = findViewById(R.id.view_all);
+        laMiaDispensa = findViewById(R.id.label_lamiadispensa);
+        addProduct = findViewById(R.id.label_aggiungi);
+
+        viewInScadenza.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentDispensa = new Intent(getApplicationContext(), ViewDispensa.class);
+                intentDispensa.putExtra("in_scadenza", true);
+                startActivity(intentDispensa);
+            }
+        });
+        laMiaDispensa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentDispensa = new Intent(getApplicationContext(), ViewDispensa.class);
+                intentDispensa.putExtra("in_scadenza", false);
+                startActivity(intentDispensa);
+            }
+        });
+        addProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentDispensa = new Intent(getApplicationContext(), ViewDispensa.class);
+                startActivity(intentDispensa);
+            }
+        });
+
+
 
         drawer=(DrawerLayout) findViewById(R.id.main_drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.open, R.string.close);
@@ -53,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
                     case R.id.drawer_dispensa:
                         Intent intentDispensa = new Intent(getApplicationContext(), ViewDispensa.class);
-                        intentDispensa.putExtra("in_scadenza", 0);
+                        intentDispensa.putExtra("in_scadenza", false);
                         startActivity(intentDispensa);
                         drawer.closeDrawers();
                         return true;
