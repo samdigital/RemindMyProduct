@@ -11,7 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-public class ViewDispensa extends AppCompatActivity {
+public class ViewDispensaActivity extends AppCompatActivity {
 
     DrawerLayout drawer;
     NavigationView navigationView;
@@ -25,6 +25,13 @@ public class ViewDispensa extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_viewdispensa);
 
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        setTitle(R.string.la_mia_dispensa_minuscolo);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+
         viewInScadenza = getIntent().getBooleanExtra("in_scadenza", false);
         if(viewInScadenza) {
             //ordinamento diverso credo
@@ -33,46 +40,10 @@ public class ViewDispensa extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "normale", Toast.LENGTH_LONG).show();
         }
 
-
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        setTitle(R.string.la_mia_dispensa_minuscolo);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-
         popolaSpinnerCategorie();
         aggiungiListenerSpinner();
 
 
-/*
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.open, R.string.close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()) {
-                    case R.id.drawer_home:
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(intent);
-                        drawer.closeDrawers();
-                        return true;
-
-                    case R.id.drawer_report:
-                        //Intent intent = new Intent(getApplicationContext(), ReportActivity.class);
-                        //startActivity(intent);
-                        drawer.closeDrawers();
-                        return true;
-
-                    default:
-                        return false;
-                }
-            }
-        });
-        */
     }
 
     @Override

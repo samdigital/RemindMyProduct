@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //setContentView(R.layout.activity_main);
         setContentView(R.layout.activity_main_drawer);
 
 
@@ -41,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         viewInScadenza.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentDispensa = new Intent(getApplicationContext(), ViewDispensa.class);
+                Intent intentDispensa = new Intent(getApplicationContext(), ViewDispensaActivity.class);
                 intentDispensa.putExtra("in_scadenza", true);
                 startActivity(intentDispensa);
             }
@@ -49,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         laMiaDispensa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentDispensa = new Intent(getApplicationContext(), ViewDispensa.class);
+                Intent intentDispensa = new Intent(getApplicationContext(), ViewDispensaActivity.class);
                 intentDispensa.putExtra("in_scadenza", false);
                 startActivity(intentDispensa);
             }
@@ -57,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         addProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentDispensa = new Intent(getApplicationContext(), ViewDispensa.class);
+                Intent intentDispensa = new Intent(getApplicationContext(), ViewDispensaActivity.class);
                 startActivity(intentDispensa);
             }
         });
@@ -75,8 +74,8 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.drawer_home:
-                        //Intent intentHome = new Intent(getApplicationContext(), MainActivity.class);
-                        //startActivity(intentHome);
+                        Intent intentHome = new Intent(getApplicationContext(), ViewItemActivity.class);
+                        startActivity(intentHome);
                         drawer.closeDrawers();
                         return true;
 
@@ -87,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                         return true;
 
                     case R.id.drawer_dispensa:
-                        Intent intentDispensa = new Intent(getApplicationContext(), ViewDispensa.class);
+                        Intent intentDispensa = new Intent(getApplicationContext(), ViewDispensaActivity.class);
                         intentDispensa.putExtra("in_scadenza", false);
                         startActivity(intentDispensa);
                         drawer.closeDrawers();

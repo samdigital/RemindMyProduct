@@ -30,48 +30,15 @@ public class ViewItemActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_viewitem_drawer);
+        setContentView(R.layout.activity_viewitem);
         // recupero id che mi è stato passato dalla lista... mi serve per il db
         product_id = getIntent().getIntExtra("product_id", 0);
-
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setTitle("Dettaglio Prodotto");
-
-        drawer = (DrawerLayout) findViewById(R.id.viewitem_drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.open, R.string.close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()) {
-                    case R.id.drawer_home:
-                        Intent intentHome = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(intentHome);
-                        drawer.closeDrawers();
-                        return true;
-
-                    case R.id.drawer_report:
-                        Intent intentReport = new Intent(getApplicationContext(), ReportActivity.class);
-                        startActivity(intentReport);
-                        drawer.closeDrawers();
-                        return true;
-
-                    case R.id.drawer_dispensa:
-                        //Intent intentDispensa = new Intent(getApplicationContext(), ViewItemActivity.class);
-                        //startActivity(intentDispensa);
-                        drawer.closeDrawers();
-                        return true;
-
-                    default:
-                        return false;
-                }
-            }
-        });
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
 
         Button consumaTutto;
@@ -115,8 +82,13 @@ public class ViewItemActivity extends AppCompatActivity {
             }
         });
 
-
         //Toast.makeText(getApplicationContext(), String.valueOf(product_id), Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 
     private AlertDialog consuma(int quantity) {

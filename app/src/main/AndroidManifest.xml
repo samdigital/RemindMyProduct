@@ -19,7 +19,7 @@
         <activity android:name=".NotificheActivity" />
         <activity android:name=".ReportActivity" />
         <activity android:name=".ViewItemActivity" />
-        <activity android:name=".ViewDispensa" />
+        <activity android:name=".ViewDispensaActivity" />
 
 
     </application>
