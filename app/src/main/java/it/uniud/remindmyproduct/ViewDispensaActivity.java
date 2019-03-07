@@ -13,8 +13,6 @@ import android.widget.Toast;
 
 public class ViewDispensaActivity extends AppCompatActivity {
 
-    DrawerLayout drawer;
-    NavigationView navigationView;
     Toolbar toolbar;
     Spinner spinner;
 

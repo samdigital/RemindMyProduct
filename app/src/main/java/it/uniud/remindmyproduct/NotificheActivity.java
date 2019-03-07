@@ -9,8 +9,6 @@ import android.widget.EditText;
 
 public class NotificheActivity extends AppCompatActivity {
 
-    DrawerLayout drawer;
-    NavigationView navigationView;
     Toolbar toolbar;
 
     EditText scadenza;

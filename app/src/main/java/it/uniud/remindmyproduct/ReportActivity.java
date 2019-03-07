@@ -8,9 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
 public class ReportActivity extends AppCompatActivity {
-
-    DrawerLayout drawer;
-    NavigationView navigationView;
+    
     Toolbar toolbar;
 
     private int num_of_product;
