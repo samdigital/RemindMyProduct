@@ -8,8 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,12 +19,23 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     private static final String TAG = "RecyclerViewAdapter";
 
-    private ArrayList<String> titoli = new ArrayList<>();
+    private ArrayList<String> nomi = new ArrayList<>();
+    private ArrayList<String> descrizioni = new ArrayList<>();
+    private ArrayList<String> pezzi = new ArrayList<>();
+    private ArrayList<String> scadenze = new ArrayList<>();
+    private ArrayList<String> icone = new ArrayList<>();
+    private ArrayList<Integer> id_prodotti = new ArrayList<>();
     private Context context;
 
 
-    public RecyclerViewAdapter(ArrayList<String> titoli, Context context) {
-        this.titoli = titoli;
+    public RecyclerViewAdapter(Context context, ArrayList<String> nomi, ArrayList<String> descrizioni, ArrayList<String> pezzi, ArrayList<String> scadenze, ArrayList<String> icone, ArrayList<Integer> id_prodotti) {
+        this.nomi = nomi;
+        this.descrizioni = descrizioni;
+        this.pezzi = pezzi;
+        this.scadenze = scadenze;
+        this.icone = icone;
+        this.id_prodotti = id_prodotti;
+
         this.context = context;
     }
 
@@ -38,13 +48,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
+        final int id_prodotto;
         Log.d(TAG, "onBing holder: called");
-        viewHolder.titolo.setText(titoli.get(position));
+        viewHolder.nome_prodotto.setText(nomi.get(position));
+        viewHolder.descizione.setText(descrizioni.get(position));
+        viewHolder.pezzi.setText(pezzi.get(position));
+        viewHolder.data_scadenza.setText(scadenze.get(position));
+        //viewHolder.icona.setImageDrawable(icone.get(position));
+        id_prodotto = (id_prodotti.get(position));
+
         viewHolder.layout_righe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "Clicked on: " + titoli.get(position));
-                Toast.makeText(context, titoli.get(position), Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "Clicked on: " + nomi.get(position) + id_prodotto);
+                Toast.makeText(context, nomi.get(position), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -52,16 +69,23 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public int getItemCount() {
-        return titoli.size();
+        return nomi.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-
-        TextView titolo;
+        TextView nome_prodotto;
+        TextView pezzi;
+        TextView descizione;
+        TextView data_scadenza;
+        //ImageView icona;
         ConstraintLayout layout_righe;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            titolo = itemView.findViewById(R.id.titolo);
+            nome_prodotto = itemView.findViewById(R.id.nome_prodotto);
+            pezzi = itemView.findViewById(R.id.pezzi);
+            descizione = itemView.findViewById(R.id.descrizione);
+            data_scadenza = itemView.findViewById(R.id.data_scadenza);
             layout_righe = itemView.findViewById(R.id.layout_righe_dispensa);
         }
     }

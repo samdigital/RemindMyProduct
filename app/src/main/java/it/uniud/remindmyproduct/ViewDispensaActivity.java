@@ -22,7 +22,12 @@ public class ViewDispensaActivity extends AppCompatActivity {
     Boolean viewInScadenza;
 
     private static final String TAG = "ViewDispensaActivity";
-    private ArrayList<String> titoli = new ArrayList<>();
+    private ArrayList<String> nomi = new ArrayList<>();
+    private ArrayList<String> descrizioni = new ArrayList<>();
+    private ArrayList<String> pezzi = new ArrayList<>();
+    private ArrayList<String> scadenze = new ArrayList<>();
+    private ArrayList<String> icone = new ArrayList<>();
+    private ArrayList<Integer> id_prodotti = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,30 +86,13 @@ public class ViewDispensaActivity extends AppCompatActivity {
 
     private void popolaLista() {
         Log.d(TAG, "partita lista");
-        titoli.add("test1");
-        titoli.add("List 2");
-        titoli.add("test3");
-        titoli.add("test1");
-        titoli.add("List 2");
-        titoli.add("test3");
-        titoli.add("test1");
-        titoli.add("List 2");
-        titoli.add("test3");
-        titoli.add("test1");
-        titoli.add("List 2");
-        titoli.add("test3");
-        titoli.add("test1");
-        titoli.add("List 2");
-        titoli.add("test3");
-        titoli.add("test1");
-        titoli.add("List 2");
-        titoli.add("test3");
-        titoli.add("test1");
-        titoli.add("List 2");
-        titoli.add("test3");
-        titoli.add("test1");
-        titoli.add("List 2");
-        titoli.add("test3");
+        nomi.add("test1");
+        descrizioni.add("desci1");
+        pezzi.add("1");
+        scadenze.add("12/12/2018");
+        icone.add("1");
+        id_prodotti.add(5656);
+
 
         initRecycleView();
     }
@@ -112,7 +100,7 @@ public class ViewDispensaActivity extends AppCompatActivity {
     private void initRecycleView () {
         Log.d(TAG, "init recycle");
         RecyclerView recyclerView = findViewById(R.id.listaProdotti);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(titoli, this);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, nomi, descrizioni, pezzi, scadenze, icone, id_prodotti);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }

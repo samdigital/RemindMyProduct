@@ -24,18 +24,18 @@
         card_view:srcCompat="@color/colorLightYellow" />
 
     <ImageView
-        android:id="@+id/pallino"
+        android:id="@+id/icona_categoria"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        card_view:layout_constraintBottom_toBottomOf="@+id/titolo"
+        card_view:layout_constraintBottom_toBottomOf="@+id/nome_prodotto"
         card_view:layout_constraintStart_toStartOf="parent"
-        card_view:layout_constraintTop_toTopOf="@+id/titolo"
+        card_view:layout_constraintTop_toTopOf="@+id/nome_prodotto"
         card_view:srcCompat="@drawable/icon_pallino" />
 
     <TextView
-        android:id="@+id/titolo"
+        android:id="@+id/nome_prodotto"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:layout_marginStart="8dp"
@@ -48,7 +48,7 @@
         android:textStyle="bold"
         card_view:layout_constraintHorizontal_bias="0"
         card_view:layout_constraintEnd_toStartOf="@+id/pezzi"
-        card_view:layout_constraintStart_toEndOf="@+id/pallino"
+        card_view:layout_constraintStart_toEndOf="@+id/icona_categoria"
         card_view:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -58,9 +58,9 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:text="@string/xx_pezzi"
-        card_view:layout_constraintBottom_toBottomOf="@+id/titolo"
+        card_view:layout_constraintBottom_toBottomOf="@+id/nome_prodotto"
         card_view:layout_constraintEnd_toEndOf="parent"
-        card_view:layout_constraintTop_toTopOf="@+id/titolo" />
+        card_view:layout_constraintTop_toTopOf="@+id/nome_prodotto" />
 
     <TextView
         android:id="@+id/descrizione"
@@ -74,8 +74,8 @@
         card_view:layout_constraintHorizontal_bias="0"
         card_view:layout_constraintBottom_toBottomOf="@+id/sfondo"
         card_view:layout_constraintEnd_toStartOf="@+id/data_scadenza"
-        card_view:layout_constraintStart_toStartOf="@+id/titolo"
-        card_view:layout_constraintTop_toBottomOf="@+id/titolo" />
+        card_view:layout_constraintStart_toStartOf="@+id/nome_prodotto"
+        card_view:layout_constraintTop_toBottomOf="@+id/nome_prodotto" />
 
     <TextView
         android:id="@+id/data_scadenza"
