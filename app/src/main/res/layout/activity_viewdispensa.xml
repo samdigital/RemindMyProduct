@@ -56,14 +56,12 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/listaProdotti"
-        android:scrollbars="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintStart_toEndOf="@+id/spinnerCategorie"
-        app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
-        tools:layout_editor_absoluteX="8dp" >
+        android:layout_marginTop="15dp"
+        android:scrollbars="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerCategorie"
+        tools:layout_editor_absoluteX="0dp">
 
     </android.support.v7.widget.RecyclerView>
 

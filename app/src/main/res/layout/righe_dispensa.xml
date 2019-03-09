@@ -1,17 +1,92 @@
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_righe_dispensa"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
-    card_view:cardCornerRadius="15dp"
-    card_view:cardBackgroundColor="@color/colorLightGreen"
-    card_view:cardElevation="7dp"
-    >
+    android:layout_margin="8dp"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/sfondo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginBottom="8dp"
+        card_view:layout_constraintBottom_toBottomOf="parent"
+        card_view:layout_constraintEnd_toEndOf="parent"
+        card_view:layout_constraintStart_toStartOf="parent"
+        card_view:layout_constraintTop_toTopOf="parent"
+        card_view:srcCompat="@color/colorLightYellow" />
+
+    <ImageView
+        android:id="@+id/pallino"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        card_view:layout_constraintBottom_toBottomOf="@+id/titolo"
+        card_view:layout_constraintStart_toStartOf="parent"
+        card_view:layout_constraintTop_toTopOf="@+id/titolo"
+        card_view:srcCompat="@drawable/icon_pallino" />
+
     <TextView
         android:id="@+id/titolo"
-        android:gravity="center"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="@string/prodotto"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        card_view:layout_constraintHorizontal_bias="0"
+        card_view:layout_constraintEnd_toStartOf="@+id/pezzi"
+        card_view:layout_constraintStart_toEndOf="@+id/pallino"
+        card_view:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/pezzi"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        />
-</android.support.v7.widget.CardView>
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="@string/xx_pezzi"
+        card_view:layout_constraintBottom_toBottomOf="@+id/titolo"
+        card_view:layout_constraintEnd_toEndOf="parent"
+        card_view:layout_constraintTop_toTopOf="@+id/titolo" />
+
+    <TextView
+        android:id="@+id/descrizione"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/descrizione_prodotto"
+        card_view:layout_constraintHorizontal_bias="0"
+        card_view:layout_constraintBottom_toBottomOf="@+id/sfondo"
+        card_view:layout_constraintEnd_toStartOf="@+id/data_scadenza"
+        card_view:layout_constraintStart_toStartOf="@+id/titolo"
+        card_view:layout_constraintTop_toBottomOf="@+id/titolo" />
+
+    <TextView
+        android:id="@+id/data_scadenza"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="@string/placeholder_data"
+        android:textStyle="bold"
+        card_view:layout_constraintBottom_toBottomOf="@+id/descrizione"
+        card_view:layout_constraintEnd_toEndOf="parent"
+        card_view:layout_constraintTop_toTopOf="@+id/descrizione" />
+
+</android.support.constraint.ConstraintLayout>

@@ -2,12 +2,17 @@ package it.uniud.remindmyproduct;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class ViewDispensaActivity extends AppCompatActivity {
 
@@ -15,6 +20,9 @@ public class ViewDispensaActivity extends AppCompatActivity {
     Spinner spinner;
 
     Boolean viewInScadenza;
+
+    private static final String TAG = "ViewDispensaActivity";
+    private ArrayList<String> titoli = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +47,8 @@ public class ViewDispensaActivity extends AppCompatActivity {
         popolaSpinnerCategorie();
         aggiungiListenerSpinner();
 
-
+        Log.d(TAG, "oncreate started");
+        popolaLista();
     }
 
     @Override
@@ -70,6 +79,42 @@ public class ViewDispensaActivity extends AppCompatActivity {
         });
     }
 
+    private void popolaLista() {
+        Log.d(TAG, "partita lista");
+        titoli.add("test1");
+        titoli.add("List 2");
+        titoli.add("test3");
+        titoli.add("test1");
+        titoli.add("List 2");
+        titoli.add("test3");
+        titoli.add("test1");
+        titoli.add("List 2");
+        titoli.add("test3");
+        titoli.add("test1");
+        titoli.add("List 2");
+        titoli.add("test3");
+        titoli.add("test1");
+        titoli.add("List 2");
+        titoli.add("test3");
+        titoli.add("test1");
+        titoli.add("List 2");
+        titoli.add("test3");
+        titoli.add("test1");
+        titoli.add("List 2");
+        titoli.add("test3");
+        titoli.add("test1");
+        titoli.add("List 2");
+        titoli.add("test3");
 
+        initRecycleView();
+    }
+
+    private void initRecycleView () {
+        Log.d(TAG, "init recycle");
+        RecyclerView recyclerView = findViewById(R.id.listaProdotti);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(titoli, this);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
 
 }
