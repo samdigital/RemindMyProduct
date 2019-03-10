@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -18,6 +19,8 @@ public class ViewDispensaActivity extends AppCompatActivity {
 
     Toolbar toolbar;
     Spinner spinner;
+    SearchView barraRicerca;
+    int categoriaSelezionata;
 
     Boolean viewInScadenza;
 
@@ -53,7 +56,18 @@ public class ViewDispensaActivity extends AppCompatActivity {
         aggiungiListenerSpinner();
 
         Log.d(TAG, "oncreate started");
-        popolaLista(0);
+        categoriaSelezionata=0;
+        popolaLista(categoriaSelezionata);
+
+
+
+        barraRicerca = (SearchView) findViewById(R.id.barraRicerca);
+        aggiungiListenerSearch();
+
+
+
+
+
     }
 
     @Override
@@ -70,6 +84,22 @@ public class ViewDispensaActivity extends AppCompatActivity {
         spinner.setSelection(0);
     }
 
+    public void aggiungiListenerSearch() {
+        barraRicerca.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                popolaLista(categoriaSelezionata);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                popolaLista(categoriaSelezionata);
+                return false;
+            }
+        });
+    }
+
     public void popolaSpinnerCategorie() {
         spinner = (Spinner) findViewById(R.id.spinnerCategorie);
         CategorieProdotti categorie = new CategorieProdotti();
@@ -82,8 +112,9 @@ public class ViewDispensaActivity extends AppCompatActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(), String.valueOf(position), Toast.LENGTH_LONG).show();
-                popolaLista(position);
+                //Toast.makeText(getApplicationContext(), String.valueOf(position), Toast.LENGTH_LONG).show();
+                categoriaSelezionata=position;
+                popolaLista(categoriaSelezionata);
             }
 
             @Override
