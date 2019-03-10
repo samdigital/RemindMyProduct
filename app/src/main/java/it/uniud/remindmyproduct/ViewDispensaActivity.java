@@ -59,7 +59,15 @@ public class ViewDispensaActivity extends AppCompatActivity {
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
+        finish();
         return true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        popolaLista(0);
+        spinner.setSelection(0);
     }
 
     public void popolaSpinnerCategorie() {
@@ -146,12 +154,12 @@ public class ViewDispensaActivity extends AppCompatActivity {
             icone.add(6);
             ids_prodotto.add(6);
         } else {
-            nomi.add("test6");
-            descrizioni.add("desci6");
-            pezzi.add("6");
+            nomi.add("test3");
+            descrizioni.add("desci3");
+            pezzi.add("3");
             scadenze.add("12/12/2018");
-            icone.add(6);
-            ids_prodotto.add(6);
+            icone.add(3);
+            ids_prodotto.add(3);
         }
 
 

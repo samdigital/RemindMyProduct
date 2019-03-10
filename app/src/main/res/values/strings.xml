@@ -42,5 +42,5 @@
     <string name="conferma_apertura">Confermi di aver aperto questo prodotto?</string>
     <string name="la_mia_dispensa_minuscolo">La Mia Dispensa</string>
     <string name="consuma_in_parte_select">Seleziona quanto vuoi consumare</string>
-    <string name="quantity_short_qta">q.ta:</string>
+    <string name="quantity_short_qta">q.ta: </string>
 </resources>

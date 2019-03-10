@@ -83,6 +83,7 @@ public class ViewItemActivity extends AppCompatActivity {
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
+        finish();
         return true;
     }
 
