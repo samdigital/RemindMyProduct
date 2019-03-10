@@ -57,9 +57,11 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/listaProdotti"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginTop="15dp"
+        android:layout_marginBottom="8dp"
         android:scrollbars="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerCategorie"
         tools:layout_editor_absoluteX="0dp">
 

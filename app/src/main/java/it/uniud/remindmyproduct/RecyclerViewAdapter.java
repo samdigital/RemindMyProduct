@@ -23,12 +23,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private ArrayList<String> descrizioni = new ArrayList<>();
     private ArrayList<String> pezzi = new ArrayList<>();
     private ArrayList<String> scadenze = new ArrayList<>();
-    private ArrayList<String> icone = new ArrayList<>();
+    private ArrayList<Integer> icone = new ArrayList<>();
     private ArrayList<Integer> id_prodotti = new ArrayList<>();
     private Context context;
 
 
-    public RecyclerViewAdapter(Context context, ArrayList<String> nomi, ArrayList<String> descrizioni, ArrayList<String> pezzi, ArrayList<String> scadenze, ArrayList<String> icone, ArrayList<Integer> id_prodotti) {
+    public RecyclerViewAdapter(Context context, ArrayList<String> nomi, ArrayList<String> descrizioni, ArrayList<String> pezzi, ArrayList<String> scadenze, ArrayList<Integer> icone, ArrayList<Integer> id_prodotti) {
         this.nomi = nomi;
         this.descrizioni = descrizioni;
         this.pezzi = pezzi;
@@ -49,12 +49,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
         final int id_prodotto;
+        CategorieProdotti categorie = new CategorieProdotti();
         Log.d(TAG, "onBing holder: called");
         viewHolder.nome_prodotto.setText(nomi.get(position));
         viewHolder.descizione.setText(descrizioni.get(position));
         viewHolder.pezzi.setText(pezzi.get(position));
         viewHolder.data_scadenza.setText(scadenze.get(position));
-        //viewHolder.icona.setImageDrawable(icone.get(position));
+        viewHolder.icona.setImageResource(categorie.getIconCategoryAtIndex(icone.get(position)));
         id_prodotto = (id_prodotti.get(position));
 
         viewHolder.layout_righe.setOnClickListener(new View.OnClickListener() {
@@ -77,7 +78,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView pezzi;
         TextView descizione;
         TextView data_scadenza;
-        //ImageView icona;
+        ImageView icona;
         ConstraintLayout layout_righe;
 
         public ViewHolder(@NonNull View itemView) {
@@ -86,6 +87,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             pezzi = itemView.findViewById(R.id.pezzi);
             descizione = itemView.findViewById(R.id.descrizione);
             data_scadenza = itemView.findViewById(R.id.data_scadenza);
+            icona = itemView.findViewById(R.id.icona_categoria);
             layout_righe = itemView.findViewById(R.id.layout_righe_dispensa);
         }
     }

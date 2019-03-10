@@ -26,8 +26,8 @@ public class ViewDispensaActivity extends AppCompatActivity {
     private ArrayList<String> descrizioni = new ArrayList<>();
     private ArrayList<String> pezzi = new ArrayList<>();
     private ArrayList<String> scadenze = new ArrayList<>();
-    private ArrayList<String> icone = new ArrayList<>();
-    private ArrayList<Integer> id_prodotti = new ArrayList<>();
+    private ArrayList<Integer> icone = new ArrayList<Integer>();
+    private ArrayList<Integer> id_prodotto = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,13 +86,55 @@ public class ViewDispensaActivity extends AppCompatActivity {
 
     private void popolaLista() {
         Log.d(TAG, "partita lista");
+        nomi.add("test0");
+        descrizioni.add("desci0");
+        pezzi.add("0");
+        scadenze.add("12/12/2018");
+        icone.add(0);
+        id_prodotto.add(0);
+
         nomi.add("test1");
         descrizioni.add("desci1");
         pezzi.add("1");
         scadenze.add("12/12/2018");
-        icone.add("1");
-        id_prodotti.add(5656);
+        icone.add(1);
+        id_prodotto.add(1);
 
+        nomi.add("test2");
+        descrizioni.add("desci2");
+        pezzi.add("2");
+        scadenze.add("12/12/2018");
+        icone.add(2);
+        id_prodotto.add(2);
+
+        nomi.add("test3");
+        descrizioni.add("desci3");
+        pezzi.add("3");
+        scadenze.add("12/12/2018");
+        icone.add(3);
+        id_prodotto.add(3);
+
+        nomi.add("test4");
+        descrizioni.add("desci4");
+        pezzi.add("4");
+        scadenze.add("12/12/2018");
+        icone.add(4);
+        id_prodotto.add(4);
+
+        nomi.add("test5");
+        descrizioni.add("desci5");
+        pezzi.add("5");
+        scadenze.add("12/12/2018");
+        icone.add(5);
+        id_prodotto.add(5);
+
+
+        nomi.add("test6");
+        descrizioni.add("desci6");
+        pezzi.add("6");
+        scadenze.add("12/12/2018");
+        icone.add(6);
+        id_prodotto.add(6);
 
         initRecycleView();
     }
@@ -100,7 +142,7 @@ public class ViewDispensaActivity extends AppCompatActivity {
     private void initRecycleView () {
         Log.d(TAG, "init recycle");
         RecyclerView recyclerView = findViewById(R.id.listaProdotti);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, nomi, descrizioni, pezzi, scadenze, icone, id_prodotti);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, nomi, descrizioni, pezzi, scadenze, icone, id_prodotto);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
