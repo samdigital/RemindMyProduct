@@ -4,7 +4,7 @@
     android:id="@+id/layout_righe_dispensa"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
+    android:layout_margin="3dp"
     android:orientation="vertical">
 
     <ImageView
@@ -16,7 +16,7 @@
         android:layout_marginTop="3dp"
         android:layout_marginEnd="3dp"
         android:layout_marginRight="3dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="3dp"
         card_view:layout_constraintBottom_toBottomOf="parent"
         card_view:layout_constraintEnd_toEndOf="parent"
         card_view:layout_constraintStart_toStartOf="parent"
@@ -36,7 +36,7 @@
 
     <TextView
         android:id="@+id/nome_prodotto"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="fill_parent"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
@@ -46,8 +46,8 @@
         android:text="@string/prodotto"
         android:textSize="16dp"
         android:textStyle="bold"
+        card_view:layout_constraintEnd_toStartOf="@+id/data_scadenza"
         card_view:layout_constraintHorizontal_bias="0"
-        card_view:layout_constraintEnd_toStartOf="@+id/pezzi"
         card_view:layout_constraintStart_toEndOf="@+id/icona_categoria"
         card_view:layout_constraintTop_toTopOf="parent" />
 
@@ -64,7 +64,7 @@
 
     <TextView
         android:id="@+id/descrizione"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="fill_parent"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -79,7 +79,7 @@
 
     <TextView
         android:id="@+id/data_scadenza"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"

@@ -1,6 +1,7 @@
 package it.uniud.remindmyproduct;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
@@ -53,7 +54,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         Log.d(TAG, "onBing holder: called");
         viewHolder.nome_prodotto.setText(nomi.get(position));
         viewHolder.descizione.setText(descrizioni.get(position));
-        viewHolder.pezzi.setText(pezzi.get(position));
+        viewHolder.pezzi.setText(context.getString(R.string.quantity_short_qta) + pezzi.get(position));
         viewHolder.data_scadenza.setText(scadenze.get(position));
         viewHolder.icona.setImageResource(categorie.getIconCategoryAtIndex(icone.get(position)));
         id_prodotto = (id_prodotti.get(position));
@@ -63,6 +64,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             public void onClick(View v) {
                 Log.d(TAG, "Clicked on: " + nomi.get(position) + id_prodotto);
                 Toast.makeText(context, nomi.get(position), Toast.LENGTH_SHORT).show();
+                Intent intentProdotto = new Intent(context.getApplicationContext(), ViewItemActivity.class);
+                intentProdotto.putExtra("id_prodotto", id_prodotti.get(position));
+                context.startActivity(intentProdotto);
             }
         });
 
