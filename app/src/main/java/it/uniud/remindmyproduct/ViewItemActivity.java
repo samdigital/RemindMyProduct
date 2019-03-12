@@ -15,6 +15,9 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class ViewItemActivity extends AppCompatActivity {
 
     Toolbar toolbar;
@@ -200,8 +203,13 @@ public class ViewItemActivity extends AppCompatActivity {
         productName.setText(cursor.getString(cursor.getColumnIndex(DatabaseWrapper.PRODUCT_NAME)));
         description.setText(cursor.getString(cursor.getColumnIndex(DatabaseWrapper.PRODUCT_DESCRIPTION)));
         quantity.setText(cursor.getString(cursor.getColumnIndex(DatabaseWrapper.PRODUCT_QUANTITY)));
-        expireDate.setText(cursor.getString(cursor.getColumnIndex(DatabaseWrapper.PRODUCT_EXPIREDATE)));
-        insertedDate.setText(cursor.getString(cursor.getColumnIndex(DatabaseWrapper.PRODUCT_INSERTED)));
+
+        Long long_date;
+        long_date= cursor.getLong(cursor.getColumnIndex(DatabaseWrapper.PRODUCT_EXPIREDATE));
+        expireDate.setText(getDate(long_date));
+        long_date= cursor.getLong(cursor.getColumnIndex(DatabaseWrapper.PRODUCT_INSERTED));
+        insertedDate.setText(getDate(long_date));
+
         Double valore = cursor.getDouble(cursor.getColumnIndex(DatabaseWrapper.PRODUCT_VALUE));
         value.setText(String.format("%.2f", valore)+this.getString(R.string.currency));
 
@@ -211,6 +219,12 @@ public class ViewItemActivity extends AppCompatActivity {
 
 
         dbWrapper.close();
+    }
+
+    public static String getDate(long milliSeconds) {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String dateString = formatter.format(new Date(milliSeconds));
+        return dateString;
     }
 
 }

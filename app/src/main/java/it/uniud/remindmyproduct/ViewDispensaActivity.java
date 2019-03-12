@@ -14,6 +14,7 @@ import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -64,6 +65,35 @@ public class ViewDispensaActivity extends AppCompatActivity {
         Log.d(TAG, "oncreate started");
         categoriaSelezionata=0;
         popolaLista(categoriaSelezionata, "");
+
+
+        dbWrapper.open();
+        Log.d("DB ACT", "sto per lanciare");
+        Date today=new Date();
+
+
+
+/*
+        Long id_back;
+        id_back=dbWrapper.createProduct("Test0", "desc0", 0, 1, today.getTime(), 0.50);
+        Log.d("DB ACT", "id prodotto: "+id_back);
+        id_back=dbWrapper.createProduct("Test1", "desc1", 1, 1, today.getTime(), 11.50);
+        Log.d("DB ACT", "id prodotto: "+id_back);
+        id_back=dbWrapper.createProduct("Test2", "desc2", 2, 2, today.getTime(), 22.50);
+        Log.d("DB ACT", "id prodotto: "+id_back);
+        id_back=dbWrapper.createProduct("Test3", "desc3", 3, 3, today.getTime(), 33.50);
+        Log.d("DB ACT", "id prodotto: "+id_back);
+        id_back=dbWrapper.createProduct("Test4", "desc4", 4, 4, today.getTime(), 44.50);
+        Log.d("DB ACT", "id prodotto: "+id_back);
+        id_back=dbWrapper.createProduct("Test5", "desc5", 5, 5, today.getTime(), 55.50);
+        Log.d("DB ACT", "id prodotto: "+id_back);
+        id_back=dbWrapper.createProduct("Test6", "desc6", 6, 6, today.getTime(), 66.50);
+        Log.d("DB ACT", "id prodotto: "+id_back);
+
+        dbWrapper.close();
+
+*/
+
 
 
 
@@ -133,7 +163,6 @@ public class ViewDispensaActivity extends AppCompatActivity {
 
     private void popolaLista(int category, String filter) {
         Log.d(TAG, "partita lista");
-        Long id_back;
 
         nomi.clear();
         descrizioni.clear();
@@ -142,28 +171,6 @@ public class ViewDispensaActivity extends AppCompatActivity {
         icone.clear();
         ids_prodotto.clear();
 
-
-/*
-        dbWrapper.open();
-        Log.d("DB ACT", "sto per lanciare");
-        Date today=new Date();
-
-        id_back=dbWrapper.createProduct("Test1", "desc1", 1, 1, today, 11.50);
-        Log.d("DB ACT", "id prodotto: "+id_back);
-        id_back=dbWrapper.createProduct("Test2", "desc2", 2, 2, today, 22.50);
-        Log.d("DB ACT", "id prodotto: "+id_back);
-        id_back=dbWrapper.createProduct("Test3", "desc3", 3, 3, today, 33.50);
-        Log.d("DB ACT", "id prodotto: "+id_back);
-        id_back=dbWrapper.createProduct("Test4", "desc4", 4, 4, today, 44.50);
-        Log.d("DB ACT", "id prodotto: "+id_back);
-        id_back=dbWrapper.createProduct("Test5", "desc5", 5, 5, today, 55.50);
-        Log.d("DB ACT", "id prodotto: "+id_back);
-        id_back=dbWrapper.createProduct("Test6", "desc6", 6, 6, today, 66.50);
-        Log.d("DB ACT", "id prodotto: "+id_back);
-
-        dbWrapper.close();
-
-*/
 
         dbWrapper.open();
         if(viewInScadenza) {
@@ -175,7 +182,7 @@ public class ViewDispensaActivity extends AppCompatActivity {
             nomi.add(cursor.getString(cursor.getColumnIndex(DatabaseWrapper.PRODUCT_NAME)));
             descrizioni.add(cursor.getString(cursor.getColumnIndex(DatabaseWrapper.PRODUCT_DESCRIPTION)));
             pezzi.add(cursor.getString(cursor.getColumnIndex(DatabaseWrapper.PRODUCT_QUANTITY)));
-            scadenze.add(cursor.getString(cursor.getColumnIndex(DatabaseWrapper.PRODUCT_EXPIREDATE)));
+            scadenze.add(getDate(cursor.getLong(cursor.getColumnIndex(DatabaseWrapper.PRODUCT_EXPIREDATE))));
             icone.add(cursor.getInt(cursor.getColumnIndex(DatabaseWrapper.PRODUCT_CATEGORY)));
             ids_prodotto.add(cursor.getInt(cursor.getColumnIndex(DatabaseWrapper.PRODUCT_ID)));
         }
@@ -191,6 +198,12 @@ public class ViewDispensaActivity extends AppCompatActivity {
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, nomi, descrizioni, pezzi, scadenze, icone, ids_prodotto);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    public static String getDate(long milliSeconds) {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String dateString = formatter.format(new Date(milliSeconds));
+        return dateString;
     }
 
 }

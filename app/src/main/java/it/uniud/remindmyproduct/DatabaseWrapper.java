@@ -41,8 +41,8 @@ public class DatabaseWrapper {
                 + PRODUCT_ID + " integer primary key autoincrement, "
                 + PRODUCT_NAME + " text not null, "
                 + PRODUCT_DESCRIPTION + " text, "
-                + PRODUCT_EXPIREDATE + " date, "
-                + PRODUCT_INSERTED + " date , "
+                + PRODUCT_EXPIREDATE + " integer, "
+                + PRODUCT_INSERTED + " integer , "
                 + PRODUCT_QUANTITY + " integer, "
                 + PRODUCT_VALUE + " double, "
                 + PRODUCT_ISOPEN + " boolean, "
@@ -76,29 +76,31 @@ public class DatabaseWrapper {
         dbHelper.close();
     }
 
-    private ContentValues createContentValues(String nome, String descrizione, Integer categoria, Integer quantita, Date scadenza, Double valore) {
+    private ContentValues createContentValues(String nome, String descrizione, Integer categoria, Integer quantita, Long scadenza, Double valore) {
         ContentValues values = new ContentValues();
+        Date oggi = new Date();
+
 
         values.put(PRODUCT_NAME, nome);
         values.put(PRODUCT_DESCRIPTION, descrizione);
         values.put(PRODUCT_CATEGORY, categoria);
         values.put(PRODUCT_QUANTITY, quantita);
-        //values.put(PRODUCT_EXPIREDATE, scadenza);
-        //values.put(PRODUCT_INSERTED, )
+        values.put(PRODUCT_EXPIREDATE, scadenza);
+        values.put(PRODUCT_INSERTED, oggi.getTime());
         values.put(PRODUCT_VALUE, valore);
         values.put(PRODUCT_ISOPEN, true);
         Log.d("DB ACT", "ho i valori");
         return  values;
     }
 
-    public long createProduct(String nome, String descrizione, Integer categoria, Integer quantita, Date scadenza, Double valore) {
+    public long createProduct(String nome, String descrizione, Integer categoria, Integer quantita, Long scadenza, Double valore) {
         Log.d("DB ACT", "prima di initialvalues");
         ContentValues initialValues = createContentValues(nome, descrizione, categoria, quantita, scadenza, valore);
         Log.d("DB ACT", "prima delle query");
         return database.insertOrThrow(DATABASE_TABLE, null, initialValues);
     }
 
-    public boolean updateProduct(long id_prodotto, String nome, String descrizione, Integer categoria, Integer quantita, Date scadenza, Double valore) {
+    public boolean updateProduct(long id_prodotto, String nome, String descrizione, Integer categoria, Integer quantita, Long scadenza, Double valore) {
         ContentValues updateValues = createContentValues(nome, descrizione, categoria, quantita, scadenza, valore);
         return database.update(DATABASE_TABLE, updateValues, PRODUCT_ID+"="+id_prodotto, null)>0;
     }
