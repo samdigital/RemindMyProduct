@@ -65,7 +65,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 Log.d(TAG, "Clicked on: " + nomi.get(position) + id_prodotto);
                 Toast.makeText(context, nomi.get(position), Toast.LENGTH_SHORT).show();
                 Intent intentProdotto = new Intent(context.getApplicationContext(), ViewItemActivity.class);
-                intentProdotto.putExtra("id_prodotto", id_prodotti.get(position));
+                intentProdotto.putExtra("id_prodotto", id_prodotto);
                 context.startActivity(intentProdotto);
             }
         });

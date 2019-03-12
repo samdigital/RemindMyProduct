@@ -1,5 +1,6 @@
 package it.uniud.remindmyproduct;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ViewDispensaActivity extends AppCompatActivity {
 
@@ -23,6 +25,9 @@ public class ViewDispensaActivity extends AppCompatActivity {
     int categoriaSelezionata;
 
     Boolean viewInScadenza;
+
+    private DatabaseWrapper dbWrapper;
+    private Cursor cursor;
 
     private static final String TAG = "ViewDispensaActivity";
     private ArrayList<String> nomi = new ArrayList<>();
@@ -42,6 +47,7 @@ public class ViewDispensaActivity extends AppCompatActivity {
         setTitle(R.string.la_mia_dispensa_minuscolo);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        dbWrapper = new DatabaseWrapper(this);
 
 
         viewInScadenza = getIntent().getBooleanExtra("in_scadenza", false);
@@ -57,7 +63,7 @@ public class ViewDispensaActivity extends AppCompatActivity {
 
         Log.d(TAG, "oncreate started");
         categoriaSelezionata=0;
-        popolaLista(categoriaSelezionata);
+        popolaLista(categoriaSelezionata, "");
 
 
 
@@ -80,7 +86,7 @@ public class ViewDispensaActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        popolaLista(0);
+        popolaLista(0, "");
         spinner.setSelection(0);
     }
 
@@ -88,13 +94,13 @@ public class ViewDispensaActivity extends AppCompatActivity {
         barraRicerca.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                popolaLista(categoriaSelezionata);
+                popolaLista(categoriaSelezionata, query);
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                popolaLista(categoriaSelezionata);
+                popolaLista(categoriaSelezionata, newText);
                 return false;
             }
         });
@@ -114,7 +120,8 @@ public class ViewDispensaActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //Toast.makeText(getApplicationContext(), String.valueOf(position), Toast.LENGTH_LONG).show();
                 categoriaSelezionata=position;
-                popolaLista(categoriaSelezionata);
+                popolaLista(categoriaSelezionata, "");
+                barraRicerca.setQuery("", false);
             }
 
             @Override
@@ -124,8 +131,9 @@ public class ViewDispensaActivity extends AppCompatActivity {
         });
     }
 
-    private void popolaLista(int category) {
+    private void popolaLista(int category, String filter) {
         Log.d(TAG, "partita lista");
+        Long id_back;
 
         nomi.clear();
         descrizioni.clear();
@@ -134,65 +142,44 @@ public class ViewDispensaActivity extends AppCompatActivity {
         icone.clear();
         ids_prodotto.clear();
 
-        if(category == 0) {
-            nomi.add("test0");
-            descrizioni.add("desci0");
-            pezzi.add("0");
-            scadenze.add("12/12/2018");
-            icone.add(0);
-            ids_prodotto.add(0);
 
-            nomi.add("test1kdkshkdsajdksdjsalkdjdsfdsfdsaffsdssalldsadsad");
-            descrizioni.add("desci1dsfsfkaflkdhsfdaskjfdashfdsahfsdakfhdsklfdsafsadfdsfds");
-            pezzi.add("1");
-            scadenze.add("12/12/2018");
-            icone.add(1);
-            ids_prodotto.add(1);
+/*
+        dbWrapper.open();
+        Log.d("DB ACT", "sto per lanciare");
+        Date today=new Date();
 
-            nomi.add("test2");
-            descrizioni.add("desci2");
-            pezzi.add("2");
-            scadenze.add("12/12/2018");
-            icone.add(2);
-            ids_prodotto.add(2);
+        id_back=dbWrapper.createProduct("Test1", "desc1", 1, 1, today, 11.50);
+        Log.d("DB ACT", "id prodotto: "+id_back);
+        id_back=dbWrapper.createProduct("Test2", "desc2", 2, 2, today, 22.50);
+        Log.d("DB ACT", "id prodotto: "+id_back);
+        id_back=dbWrapper.createProduct("Test3", "desc3", 3, 3, today, 33.50);
+        Log.d("DB ACT", "id prodotto: "+id_back);
+        id_back=dbWrapper.createProduct("Test4", "desc4", 4, 4, today, 44.50);
+        Log.d("DB ACT", "id prodotto: "+id_back);
+        id_back=dbWrapper.createProduct("Test5", "desc5", 5, 5, today, 55.50);
+        Log.d("DB ACT", "id prodotto: "+id_back);
+        id_back=dbWrapper.createProduct("Test6", "desc6", 6, 6, today, 66.50);
+        Log.d("DB ACT", "id prodotto: "+id_back);
 
-            nomi.add("test3");
-            descrizioni.add("desci3");
-            pezzi.add("3");
-            scadenze.add("12/12/2018");
-            icone.add(3);
-            ids_prodotto.add(3);
+        dbWrapper.close();
 
-            nomi.add("test4");
-            descrizioni.add("desci4");
-            pezzi.add("4");
-            scadenze.add("12/12/2018");
-            icone.add(4);
-            ids_prodotto.add(4);
+*/
 
-            nomi.add("test5");
-            descrizioni.add("desci5");
-            pezzi.add("5");
-            scadenze.add("12/12/2018");
-            icone.add(5);
-            ids_prodotto.add(5);
-
-
-            nomi.add("test6");
-            descrizioni.add("desci6");
-            pezzi.add("6");
-            scadenze.add("12/12/2018");
-            icone.add(6);
-            ids_prodotto.add(6);
+        dbWrapper.open();
+        if(viewInScadenza) {
+            cursor=dbWrapper.getProductListInScadenza(category, filter);
         } else {
-            nomi.add("test3");
-            descrizioni.add("desci3");
-            pezzi.add("3");
-            scadenze.add("12/12/2018");
-            icone.add(3);
-            ids_prodotto.add(3);
+            cursor=dbWrapper.getProductList(category, filter);
         }
-
+        while(cursor.moveToNext()) {
+            nomi.add(cursor.getString(cursor.getColumnIndex(DatabaseWrapper.PRODUCT_NAME)));
+            descrizioni.add(cursor.getString(cursor.getColumnIndex(DatabaseWrapper.PRODUCT_DESCRIPTION)));
+            pezzi.add(cursor.getString(cursor.getColumnIndex(DatabaseWrapper.PRODUCT_QUANTITY)));
+            scadenze.add(cursor.getString(cursor.getColumnIndex(DatabaseWrapper.PRODUCT_EXPIREDATE)));
+            icone.add(cursor.getInt(cursor.getColumnIndex(DatabaseWrapper.PRODUCT_CATEGORY)));
+            ids_prodotto.add(cursor.getInt(cursor.getColumnIndex(DatabaseWrapper.PRODUCT_ID)));
+        }
+        dbWrapper.close();
 
 
         initRecycleView();
