@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.SearchView;
 import android.widget.Spinner;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -59,30 +60,36 @@ public class ViewDispensaActivity extends AppCompatActivity {
         popolaLista(categoriaSelezionata, "");
 
         dbWrapper.open();
+        /*
         Date today=new Date();
 
-/*
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            today = dateFormat.parse("03/04/2019");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
         Long id_back;
-        id_back=dbWrapper.createProduct("Test0O", "desc0", 0, 1, today.getTime(), 0.50);
+        id_back=dbWrapper.createProduct("Test0D", "desc0", 0, 1, today.getTime(), 0.50);
         Log.d("DB ACT", "id prodotto: "+id_back);
-        id_back=dbWrapper.createProduct("Test1O", "desc1", 1, 1, today.getTime(), 11.50);
+        id_back=dbWrapper.createProduct("Test1D", "desc1", 1, 1, today.getTime(), 11.50);
         Log.d("DB ACT", "id prodotto: "+id_back);
-        id_back=dbWrapper.createProduct("Test2O", "desc2", 2, 2, today.getTime(), 22.50);
+        id_back=dbWrapper.createProduct("Test2D", "desc2", 2, 2, today.getTime(), 22.50);
         Log.d("DB ACT", "id prodotto: "+id_back);
-        id_back=dbWrapper.createProduct("Test3O", "desc3", 3, 3, today.getTime(), 33.50);
+        id_back=dbWrapper.createProduct("Test3D", "desc3", 3, 3, today.getTime(), 33.50);
         Log.d("DB ACT", "id prodotto: "+id_back);
-        id_back=dbWrapper.createProduct("Test4O", "desc4", 4, 4, today.getTime(), 44.50);
+        id_back=dbWrapper.createProduct("Test4D", "desc4", 4, 4, today.getTime(), 44.50);
         Log.d("DB ACT", "id prodotto: "+id_back);
-        id_back=dbWrapper.createProduct("Test5O", "desc5", 5, 5, today.getTime(), 55.50);
+        id_back=dbWrapper.createProduct("Test5D", "desc5", 5, 5, today.getTime(), 55.50);
         Log.d("DB ACT", "id prodotto: "+id_back);
-        id_back=dbWrapper.createProduct("Test6O", "desc6", 6, 6, today.getTime(), 66.50);
+        id_back=dbWrapper.createProduct("Test6D", "desc6", 6, 6, today.getTime(), 66.50);
         Log.d("DB ACT", "id prodotto: "+id_back);
 
         dbWrapper.close();
-
-
 */
+
+
         barraRicerca = (SearchView) findViewById(R.id.barraRicerca);
         aggiungiListenerSearch();
     }

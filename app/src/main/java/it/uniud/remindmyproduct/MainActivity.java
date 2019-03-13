@@ -12,12 +12,21 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
     DrawerLayout drawer;
     NavigationView navigationView;
     Toolbar toolbar;
+
+    TextView prodotto1;
+    TextView prodotto2;
+    TextView prodotto3;
+
+    Button viewInScadenza;
+    Button laMiaDispensa;
+    Button addProduct;
 
     private DatabaseWrapper dbWrapper;
     private Cursor cursor;
@@ -34,13 +43,13 @@ public class MainActivity extends AppCompatActivity {
         setTitle(R.string.remind_my_product);
         dbWrapper = new DatabaseWrapper(this);
 
-        Button viewInScadenza;
-        Button laMiaDispensa;
-        Button addProduct;
-
         viewInScadenza = findViewById(R.id.view_all);
         laMiaDispensa = findViewById(R.id.label_lamiadispensa);
         addProduct = findViewById(R.id.label_aggiungi);
+
+        prodotto1 = findViewById(R.id.product_1);
+        prodotto2 = findViewById(R.id.product_2);
+        prodotto3 = findViewById(R.id.product_3);
 
         viewInScadenza.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +74,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intentDispensa);
             }
         });
+
+        popolaHome();
 
 
 
@@ -108,5 +119,33 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void popolaHome() {
+        dbWrapper.open();
+        cursor = dbWrapper.getProductListInScadenza(0, "");
+        if (cursor.moveToNext()) {
+            prodotto1.setText("- " + cursor.getString(cursor.getColumnIndex(DatabaseWrapper.PRODUCT_NAME)));
+        } else {
+            prodotto1.setText("Nessun prodotto in scadenza!");
+        }
+        if (cursor.moveToNext()) {
+            prodotto2.setText("- " + cursor.getString(cursor.getColumnIndex(DatabaseWrapper.PRODUCT_NAME)));
+        } else {
+            prodotto2.setText("");
+        }
+        if (cursor.moveToNext()) {
+            prodotto3.setText("- " + cursor.getString(cursor.getColumnIndex(DatabaseWrapper.PRODUCT_NAME)));
+        } else {
+            prodotto3.setText("");
+        }
+        cursor.close();
+        dbWrapper.close();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        popolaHome();
     }
 }
