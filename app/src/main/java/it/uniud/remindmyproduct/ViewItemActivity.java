@@ -207,7 +207,7 @@ public class ViewItemActivity extends AppCompatActivity {
         dbWrapper.open();
         cursor=dbWrapper.getProduct(product_id);
 
-        cursor.moveToNext();
+        cursor.moveToFirst();
         productName.setText(cursor.getString(cursor.getColumnIndex(DatabaseWrapper.PRODUCT_NAME)));
         description.setText(cursor.getString(cursor.getColumnIndex(DatabaseWrapper.PRODUCT_DESCRIPTION)));
 

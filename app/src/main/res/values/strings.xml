@@ -54,4 +54,5 @@
     <string name="error">Errore</string>
     <string name="product_detail">Dettaglio Prodotto</string>
     <string name="remind_my_product">Remind My Product</string>
+    <string name="in_scadenza_title">In Scadenza</string>
 </resources>

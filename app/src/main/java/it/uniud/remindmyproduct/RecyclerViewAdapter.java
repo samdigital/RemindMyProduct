@@ -11,7 +11,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
@@ -52,9 +55,29 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         viewHolder.nome_prodotto.setText(nomi.get(position));
         viewHolder.descizione.setText(descrizioni.get(position));
         viewHolder.pezzi.setText(context.getString(R.string.quantity_short_qta) + " " + pezzi.get(position));
-        viewHolder.data_scadenza.setText(scadenze.get(position));
         viewHolder.icona.setImageResource(categorie.getIconCategoryAtIndex(icone.get(position)));
-        id_prodotto = (id_prodotti.get(position));
+        id_prodotto = id_prodotti.get(position);
+
+        // blocco per mettere il colore di sfondo alla lista
+        String scadenza = scadenze.get(position);
+        viewHolder.data_scadenza.setText(scadenza);
+        Date data_oggi=new Date();
+        Date data_scad=new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            data_scad = dateFormat.parse(scadenza);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        if(data_scad.getTime() < data_oggi.getTime()) {
+            viewHolder.background.setColorFilter(context.getResources().getColor(R.color.colorAccent));
+        } else {
+            if( data_scad.getTime() < data_oggi.getTime()+7*24*60*60*1000 ) {
+                viewHolder.background.setColorFilter(context.getResources().getColor(R.color.colorLightYellow));
+            } else {
+                viewHolder.background.setColorFilter(context.getResources().getColor(R.color.colorLightGreen));
+            }
+        }
 
         viewHolder.layout_righe.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,6 +102,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView data_scadenza;
         ImageView icona;
         ConstraintLayout layout_righe;
+        ImageView background;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -88,6 +112,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             data_scadenza = itemView.findViewById(R.id.data_scadenza);
             icona = itemView.findViewById(R.id.icona_categoria);
             layout_righe = itemView.findViewById(R.id.layout_righe_dispensa);
+            background = itemView.findViewById(R.id.sfondo);
         }
     }
 }
