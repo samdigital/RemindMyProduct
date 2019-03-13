@@ -71,7 +71,7 @@ public class ViewDispensaActivity extends AppCompatActivity {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
+/*
         Long id_back;
         id_back=dbWrapper.createProduct("Test0H", "desc0", 0, 1, today.getTime(), 0.50);
         Log.d("DB ACT", "id prodotto: "+id_back);
@@ -90,7 +90,7 @@ public class ViewDispensaActivity extends AppCompatActivity {
 
         dbWrapper.close();
 
-
+*/
 
         barraRicerca = (SearchView) findViewById(R.id.barraRicerca);
         aggiungiListenerSearch();
