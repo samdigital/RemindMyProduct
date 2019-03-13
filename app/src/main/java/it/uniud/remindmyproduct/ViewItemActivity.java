@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -14,7 +13,6 @@ import android.widget.NumberPicker;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -22,7 +20,10 @@ public class ViewItemActivity extends AppCompatActivity {
 
     Toolbar toolbar;
 
-    int product_id;
+    private int product_id;
+    private double prezzo;
+    private int pezzi;
+    private boolean statusProductOpen=false;
 
     private TextView productName;
     private TextView description;
@@ -30,7 +31,7 @@ public class ViewItemActivity extends AppCompatActivity {
     private TextView expireDate;
     private TextView insertedDate;
     private TextView value;
-    private boolean statusProductOpen=false;
+
 
     private DatabaseWrapper dbWrapper;
     private Cursor cursor;
@@ -42,17 +43,15 @@ public class ViewItemActivity extends AppCompatActivity {
         setContentView(R.layout.activity_viewitem);
         // recupero id che mi è stato passato dalla lista... mi serve per il db
         product_id = getIntent().getIntExtra("id_prodotto", 0);
-        Log.d("ID PRODOTTO", "id prodotto: "+product_id);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        setTitle("Dettaglio Prodotto");
+        setTitle(R.string.product_detail);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         dbWrapper = new DatabaseWrapper(this);
 
         popolaCampi();
-
 
         Button consumaTutto;
         Button consumaInParte;
@@ -65,17 +64,14 @@ public class ViewItemActivity extends AppCompatActivity {
             public void onClick(View v) {
                 AlertDialog dialog = consuma(0);
                 dialog.show();
-
             }
         });
 
         consumaInParte.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog dialog = consuma(10);
+                AlertDialog dialog = consuma(pezzi-1);
                 dialog.show();
-
-
             }
         });
 
@@ -90,14 +86,10 @@ public class ViewItemActivity extends AppCompatActivity {
                 if(isChecked) {
                     AlertDialog dialog = apri(buttonView);
                     dialog.show();
-                    //Toast.makeText(getApplicationContext(), "Aperto", Toast.LENGTH_LONG).show();
                 } else {
-                    //Toast.makeText(getApplicationContext(), "Chiuso", Toast.LENGTH_LONG).show();
                 }
             }
         });
-
-        //Toast.makeText(getApplicationContext(), String.valueOf(product_id), Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -116,7 +108,13 @@ public class ViewItemActivity extends AppCompatActivity {
 
                     .setPositiveButton(R.string.si, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int whichButton) {
-                            //codice per eliminare da DB
+                            dbWrapper.open();
+                            if(dbWrapper.consumaTutto(product_id)) {
+                                Toast.makeText(getApplicationContext(), getString(R.string.updated), Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(getApplicationContext(), getString(R.string.error), Toast.LENGTH_SHORT).show();
+                            }
+                            dbWrapper.close();
                             dialog.dismiss();
                             finish();
                         }
@@ -134,7 +132,6 @@ public class ViewItemActivity extends AppCompatActivity {
             numberPicker.setMaxValue(quantity);
             numberPicker.setMinValue(1);
 
-
             AlertDialog consumaInParte = new AlertDialog.Builder(this)
                     .setView(numberPicker)
                     .setTitle(R.string.consuma_in_parte_select)
@@ -142,14 +139,21 @@ public class ViewItemActivity extends AppCompatActivity {
 
                     .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int whichButton) {
-                            int numero = numberPicker.getValue();
+                            int qta = numberPicker.getValue();
+                            int pezzi_rimasti = pezzi-qta;
+                            Double valore_rimasto = (prezzo/pezzi)*pezzi_rimasti;
 
-                            Toast.makeText(getApplicationContext(), String.valueOf(numero), Toast.LENGTH_LONG).show();
-                            //codice per eliminare da DB
+                            dbWrapper.open();
+                            if(dbWrapper.consumaInParte(product_id, pezzi-qta, valore_rimasto)) {
+                                Toast.makeText(getApplicationContext(), getString(R.string.updated), Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(getApplicationContext(), getString(R.string.error), Toast.LENGTH_SHORT).show();
+                            }
+                            dbWrapper.close();
+
                             dialog.dismiss();
                             finish();
                         }
-
                     })
 
                     .setNegativeButton(R.string.undo, new DialogInterface.OnClickListener() {
@@ -170,9 +174,15 @@ public class ViewItemActivity extends AppCompatActivity {
 
                 .setPositiveButton(R.string.si, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
-                        buttonView.setClickable(false);
+                        dbWrapper.open();
+                        if(dbWrapper.setOpen(product_id)) {
+                            buttonView.setClickable(false);
+                            Toast.makeText(getApplicationContext(), getString(R.string.updated), Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getApplicationContext(), getString(R.string.error), Toast.LENGTH_SHORT).show();
+                        }
+                        dbWrapper.close();
                         dialog.dismiss();
-
                     }
                 })
 
@@ -195,14 +205,14 @@ public class ViewItemActivity extends AppCompatActivity {
         value = (TextView) findViewById(R.id.productprice_value);
 
         dbWrapper.open();
-        Log.d("DB VIEW", "APERTA PROCEDURA");
         cursor=dbWrapper.getProduct(product_id);
-        Log.d("DB VIEW", "FATTA QUERY");
 
         cursor.moveToNext();
         productName.setText(cursor.getString(cursor.getColumnIndex(DatabaseWrapper.PRODUCT_NAME)));
         description.setText(cursor.getString(cursor.getColumnIndex(DatabaseWrapper.PRODUCT_DESCRIPTION)));
-        quantity.setText(cursor.getString(cursor.getColumnIndex(DatabaseWrapper.PRODUCT_QUANTITY)));
+
+        pezzi=cursor.getInt(cursor.getColumnIndex(DatabaseWrapper.PRODUCT_QUANTITY));
+        quantity.setText(""+pezzi);
 
         Long long_date;
         long_date= cursor.getLong(cursor.getColumnIndex(DatabaseWrapper.PRODUCT_EXPIREDATE));
@@ -210,14 +220,12 @@ public class ViewItemActivity extends AppCompatActivity {
         long_date= cursor.getLong(cursor.getColumnIndex(DatabaseWrapper.PRODUCT_INSERTED));
         insertedDate.setText(getDate(long_date));
 
-        Double valore = cursor.getDouble(cursor.getColumnIndex(DatabaseWrapper.PRODUCT_VALUE));
-        value.setText(String.format("%.2f", valore)+this.getString(R.string.currency));
+        prezzo = cursor.getDouble(cursor.getColumnIndex(DatabaseWrapper.PRODUCT_VALUE));
+        value.setText(String.format("%.2f", prezzo)+this.getString(R.string.currency));
 
         statusProductOpen = cursor.getInt(cursor.getColumnIndex(DatabaseWrapper.PRODUCT_ISOPEN))>0;
 
-
-
-
+        cursor.close();
         dbWrapper.close();
     }
 

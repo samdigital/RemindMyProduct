@@ -43,4 +43,15 @@
     <string name="la_mia_dispensa_minuscolo">La Mia Dispensa</string>
     <string name="consuma_in_parte_select">Seleziona quanto vuoi consumare</string>
     <string name="quantity_short_qta">q.ta: </string>
+    <string name="cat_bevande">Bevande</string>
+    <string name="cat_latticini">Latticini</string>
+    <string name="cat_surgelati">Surgelati</string>
+    <string name="cat_ortofrutta">Ortofrutta</string>
+    <string name="cat_panificio">Panificio</string>
+    <string name="cat_pasticceria">Pasticceria</string>
+    <string name="cat_none">Nessuna Categoria</string>
+    <string name="updated">Aggiornato</string>
+    <string name="error">Errore</string>
+    <string name="product_detail">Dettaglio Prodotto</string>
+    <string name="remind_my_product">Remind My Product</string>
 </resources>

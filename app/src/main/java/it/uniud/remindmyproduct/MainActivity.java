@@ -1,6 +1,7 @@
 package it.uniud.remindmyproduct;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -18,6 +19,9 @@ public class MainActivity extends AppCompatActivity {
     NavigationView navigationView;
     Toolbar toolbar;
 
+    private DatabaseWrapper dbWrapper;
+    private Cursor cursor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +31,8 @@ public class MainActivity extends AppCompatActivity {
 
         toolbar=(Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        setTitle("Remind My Product");
+        setTitle(R.string.remind_my_product);
+        dbWrapper = new DatabaseWrapper(this);
 
         Button viewInScadenza;
         Button laMiaDispensa;

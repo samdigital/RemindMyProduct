@@ -1,9 +1,11 @@
 package it.uniud.remindmyproduct;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ReportActivity extends AppCompatActivity {
 
@@ -16,6 +18,9 @@ public class ReportActivity extends AppCompatActivity {
     TextView suggestion_text;
     TextView emoticon_text;
 
+    private DatabaseWrapper dbWrapper;
+    private Cursor cursor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,9 +31,19 @@ public class ReportActivity extends AppCompatActivity {
         setTitle(R.string.title_activity_report);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        dbWrapper = new DatabaseWrapper(this);
 
-        num_of_product=5;
+        num_of_product=0;
         value_of_product=0;
+
+        dbWrapper.open();
+        cursor=dbWrapper.getProductScaduti();
+        while(cursor.moveToNext()) {
+            num_of_product++;
+            value_of_product+=cursor.getDouble(cursor.getColumnIndex(DatabaseWrapper.PRODUCT_VALUE));
+        }
+        cursor.close();
+        dbWrapper.close();
 
         num_of_product_text=(TextView) findViewById(R.id.reportNumeroProdotti);
         value_of_product_text=(TextView) findViewById(R.id.reportValoreEuro);

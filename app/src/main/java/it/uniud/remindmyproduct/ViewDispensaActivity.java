@@ -12,7 +12,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.SearchView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -50,14 +49,7 @@ public class ViewDispensaActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         dbWrapper = new DatabaseWrapper(this);
 
-
         viewInScadenza = getIntent().getBooleanExtra("in_scadenza", false);
-        if(viewInScadenza) {
-            //ordinamento diverso credo
-            Toast.makeText(getApplicationContext(), "in scadenza", Toast.LENGTH_LONG).show();
-        } else {
-            Toast.makeText(getApplicationContext(), "normale", Toast.LENGTH_LONG).show();
-        }
 
         popolaSpinnerCategorie();
         aggiungiListenerSpinner();
@@ -66,44 +58,33 @@ public class ViewDispensaActivity extends AppCompatActivity {
         categoriaSelezionata=0;
         popolaLista(categoriaSelezionata, "");
 
-
         dbWrapper.open();
-        Log.d("DB ACT", "sto per lanciare");
         Date today=new Date();
 
-
-
 /*
+
         Long id_back;
-        id_back=dbWrapper.createProduct("Test0", "desc0", 0, 1, today.getTime(), 0.50);
+        id_back=dbWrapper.createProduct("Test0O", "desc0", 0, 1, today.getTime(), 0.50);
         Log.d("DB ACT", "id prodotto: "+id_back);
-        id_back=dbWrapper.createProduct("Test1", "desc1", 1, 1, today.getTime(), 11.50);
+        id_back=dbWrapper.createProduct("Test1O", "desc1", 1, 1, today.getTime(), 11.50);
         Log.d("DB ACT", "id prodotto: "+id_back);
-        id_back=dbWrapper.createProduct("Test2", "desc2", 2, 2, today.getTime(), 22.50);
+        id_back=dbWrapper.createProduct("Test2O", "desc2", 2, 2, today.getTime(), 22.50);
         Log.d("DB ACT", "id prodotto: "+id_back);
-        id_back=dbWrapper.createProduct("Test3", "desc3", 3, 3, today.getTime(), 33.50);
+        id_back=dbWrapper.createProduct("Test3O", "desc3", 3, 3, today.getTime(), 33.50);
         Log.d("DB ACT", "id prodotto: "+id_back);
-        id_back=dbWrapper.createProduct("Test4", "desc4", 4, 4, today.getTime(), 44.50);
+        id_back=dbWrapper.createProduct("Test4O", "desc4", 4, 4, today.getTime(), 44.50);
         Log.d("DB ACT", "id prodotto: "+id_back);
-        id_back=dbWrapper.createProduct("Test5", "desc5", 5, 5, today.getTime(), 55.50);
+        id_back=dbWrapper.createProduct("Test5O", "desc5", 5, 5, today.getTime(), 55.50);
         Log.d("DB ACT", "id prodotto: "+id_back);
-        id_back=dbWrapper.createProduct("Test6", "desc6", 6, 6, today.getTime(), 66.50);
+        id_back=dbWrapper.createProduct("Test6O", "desc6", 6, 6, today.getTime(), 66.50);
         Log.d("DB ACT", "id prodotto: "+id_back);
 
         dbWrapper.close();
 
+
 */
-
-
-
-
         barraRicerca = (SearchView) findViewById(R.id.barraRicerca);
         aggiungiListenerSearch();
-
-
-
-
-
     }
 
     @Override
@@ -138,7 +119,7 @@ public class ViewDispensaActivity extends AppCompatActivity {
 
     public void popolaSpinnerCategorie() {
         spinner = (Spinner) findViewById(R.id.spinnerCategorie);
-        CategorieProdotti categorie = new CategorieProdotti();
+        CategorieProdotti categorie = new CategorieProdotti(getApplicationContext());
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categorie.getListaCategorie());
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(dataAdapter);
@@ -171,7 +152,6 @@ public class ViewDispensaActivity extends AppCompatActivity {
         icone.clear();
         ids_prodotto.clear();
 
-
         dbWrapper.open();
         if(viewInScadenza) {
             cursor=dbWrapper.getProductListInScadenza(category, filter);
@@ -186,14 +166,13 @@ public class ViewDispensaActivity extends AppCompatActivity {
             icone.add(cursor.getInt(cursor.getColumnIndex(DatabaseWrapper.PRODUCT_CATEGORY)));
             ids_prodotto.add(cursor.getInt(cursor.getColumnIndex(DatabaseWrapper.PRODUCT_ID)));
         }
+        cursor.close();
         dbWrapper.close();
-
 
         initRecycleView();
     }
 
     private void initRecycleView () {
-        Log.d(TAG, "init recycle");
         RecyclerView recyclerView = findViewById(R.id.listaProdotti);
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, nomi, descrizioni, pezzi, scadenze, icone, ids_prodotto);
         recyclerView.setAdapter(adapter);

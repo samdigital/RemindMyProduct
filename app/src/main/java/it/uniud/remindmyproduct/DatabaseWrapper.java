@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import java.util.Date;
 
@@ -52,8 +51,6 @@ public class DatabaseWrapper {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
         }
 
-
-
         @Override
         public void onCreate(SQLiteDatabase database) {
             database.execSQL(DATABASE_CREATE);
@@ -80,7 +77,6 @@ public class DatabaseWrapper {
         ContentValues values = new ContentValues();
         Date oggi = new Date();
 
-
         values.put(PRODUCT_NAME, nome);
         values.put(PRODUCT_DESCRIPTION, descrizione);
         values.put(PRODUCT_CATEGORY, categoria);
@@ -88,25 +84,13 @@ public class DatabaseWrapper {
         values.put(PRODUCT_EXPIREDATE, scadenza);
         values.put(PRODUCT_INSERTED, oggi.getTime());
         values.put(PRODUCT_VALUE, valore);
-        values.put(PRODUCT_ISOPEN, true);
-        Log.d("DB ACT", "ho i valori");
+        values.put(PRODUCT_ISOPEN, false);
         return  values;
     }
 
     public long createProduct(String nome, String descrizione, Integer categoria, Integer quantita, Long scadenza, Double valore) {
-        Log.d("DB ACT", "prima di initialvalues");
         ContentValues initialValues = createContentValues(nome, descrizione, categoria, quantita, scadenza, valore);
-        Log.d("DB ACT", "prima delle query");
         return database.insertOrThrow(DATABASE_TABLE, null, initialValues);
-    }
-
-    public boolean updateProduct(long id_prodotto, String nome, String descrizione, Integer categoria, Integer quantita, Long scadenza, Double valore) {
-        ContentValues updateValues = createContentValues(nome, descrizione, categoria, quantita, scadenza, valore);
-        return database.update(DATABASE_TABLE, updateValues, PRODUCT_ID+"="+id_prodotto, null)>0;
-    }
-
-    public boolean deleteProduct(long id_prodotto) {
-        return database.delete(DATABASE_TABLE, PRODUCT_ID+"="+id_prodotto, null)>0;
     }
 
     public Cursor getProductList(int category, String filter) {
@@ -118,16 +102,38 @@ public class DatabaseWrapper {
     }
 
     public Cursor getProductListInScadenza(int category, String filter) {
+        Date data=new Date();
         if(category==0){
-            return database.query(DATABASE_TABLE, new String[] {PRODUCT_ID, PRODUCT_NAME, PRODUCT_DESCRIPTION, PRODUCT_EXPIREDATE, PRODUCT_QUANTITY, PRODUCT_CATEGORY}, PRODUCT_NAME + " like '%" + filter + "%'", null, null, null, PRODUCT_EXPIREDATE);
+            return database.query(DATABASE_TABLE, new String[] {PRODUCT_ID, PRODUCT_NAME, PRODUCT_DESCRIPTION, PRODUCT_EXPIREDATE, PRODUCT_QUANTITY, PRODUCT_CATEGORY}, PRODUCT_EXPIREDATE + " > " + data.getTime() + " AND " + PRODUCT_NAME + " like '%" + filter + "%'", null, null, null, PRODUCT_EXPIREDATE);
         } else {
-            return database.query(DATABASE_TABLE, new String[] {PRODUCT_ID, PRODUCT_NAME, PRODUCT_DESCRIPTION, PRODUCT_EXPIREDATE, PRODUCT_QUANTITY, PRODUCT_CATEGORY}, PRODUCT_NAME + " like '%" + filter + "%' AND " + PRODUCT_CATEGORY + "=" + category, null, null, null, PRODUCT_EXPIREDATE);
+            return database.query(DATABASE_TABLE, new String[] {PRODUCT_ID, PRODUCT_NAME, PRODUCT_DESCRIPTION, PRODUCT_EXPIREDATE, PRODUCT_QUANTITY, PRODUCT_CATEGORY}, PRODUCT_EXPIREDATE + " > " + data.getTime() + " AND " + PRODUCT_NAME + " like '%" + filter + "%' AND " + PRODUCT_CATEGORY + "=" + category, null, null, null, PRODUCT_EXPIREDATE);
         }
     }
 
+    public Cursor getProductScaduti() {
+        Date data=new Date();
+        return database.query(DATABASE_TABLE, new String[] {PRODUCT_QUANTITY, PRODUCT_VALUE}, PRODUCT_EXPIREDATE + " < " + data.getTime(), null, null, null, PRODUCT_EXPIREDATE);
+    }
+
     public Cursor getProduct(long id_prodotto) {
-        Log.d("DB QUERY", "ID PRODOTTO IN QUERY"+id_prodotto);
         return database.query(true, DATABASE_TABLE, new String[] {PRODUCT_ID, PRODUCT_NAME, PRODUCT_DESCRIPTION, PRODUCT_EXPIREDATE, PRODUCT_INSERTED, PRODUCT_QUANTITY, PRODUCT_VALUE, PRODUCT_ISOPEN}, PRODUCT_ID + "=" + id_prodotto, null, null, null, null, null);
+    }
+
+    public boolean setOpen(long id_prodotto) {
+        ContentValues values = new ContentValues();
+        values.put(PRODUCT_ISOPEN, true);
+        return database.update(DATABASE_TABLE, values, PRODUCT_ID + "=" + id_prodotto, null)>0;
+    }
+
+    public boolean consumaInParte(long id_prodotto, int qta, Double value) {
+        ContentValues values = new ContentValues();
+        values.put(PRODUCT_VALUE, value);
+        values.put(PRODUCT_QUANTITY, qta);
+        return database.update(DATABASE_TABLE, values, PRODUCT_ID + "=" + id_prodotto, null)>0;
+    }
+
+    public boolean consumaTutto(long id_prodotto) {
+        return database.delete(DATABASE_TABLE, PRODUCT_ID + "=" + id_prodotto, null)>0;
     }
 
 
