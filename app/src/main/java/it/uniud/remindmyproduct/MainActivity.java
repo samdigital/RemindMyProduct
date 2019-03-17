@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_drawer);
 
 
-        toolbar=(Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setTitle(R.string.remind_my_product);
         dbWrapper = new DatabaseWrapper(this);
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         addProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentDispensa = new Intent(getApplicationContext(), ViewDispensaActivity.class);
+                Intent intentDispensa = new Intent(getApplicationContext(), AddProdottoActivity.class);
                 startActivity(intentDispensa);
             }
         });
@@ -78,13 +78,12 @@ public class MainActivity extends AppCompatActivity {
         popolaHome();
 
 
-
-        drawer=(DrawerLayout) findViewById(R.id.main_drawer_layout);
+        drawer = (DrawerLayout) findViewById(R.id.main_drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.open, R.string.close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        navigationView=(NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
