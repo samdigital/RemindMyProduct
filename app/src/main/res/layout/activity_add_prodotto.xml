@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddProdottoActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbaradd"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/textNome"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:text="Nome*"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbaradd" />
+
+    <EditText
+        android:id="@+id/editNome"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/textNome"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textNome"
+        app:layout_constraintTop_toTopOf="@+id/textNome" />
+
+    <TextView
+        android:id="@+id/textDesc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Descrizione"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="@+id/textNome"
+        app:layout_constraintTop_toBottomOf="@+id/textNome" />
+
+        <EditText
+            android:id="@+id/editDesc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toBottomOf="@+id/textDesc"
+            app:layout_constraintEnd_toEndOf="@+id/editNome"
+            app:layout_constraintStart_toEndOf="@+id/textDesc"
+            app:layout_constraintTop_toTopOf="@+id/textDesc" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="@+id/editDesc"
+        app:layout_constraintStart_toStartOf="@+id/textDesc"
+        app:layout_constraintTop_toBottomOf="@+id/editDesc" />
+
+    <TextView
+        android:id="@+id/textScad"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Data scadenza*"
+        android:textSize="20dp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="@+id/spinner"
+        app:layout_constraintStart_toStartOf="@+id/spinner"
+        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+
+    <EditText
+        android:id="@+id/editScad"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:inputType="date"
+        app:layout_constraintEnd_toEndOf="@+id/textScad"
+        app:layout_constraintStart_toStartOf="@+id/textScad"
+        app:layout_constraintTop_toBottomOf="@+id/textScad" />
+
+    <TextView
+        android:id="@+id/textQuan"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Quantita'*"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="@+id/editScad"
+        app:layout_constraintTop_toBottomOf="@+id/editScad" />
+
+        <EditText
+            android:id="@+id/editQuan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            android:inputType="number"
+            app:layout_constraintBottom_toBottomOf="@+id/textQuan"
+            app:layout_constraintEnd_toStartOf="@+id/textPezzi"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/textQuan"
+            app:layout_constraintTop_toTopOf="@+id/textQuan"
+            app:layout_constraintVertical_bias="0.444" />
+
+        <TextView
+            android:id="@+id/textPezzi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="pezzi"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="@+id/editQuan"
+            app:layout_constraintEnd_toEndOf="@+id/editScad"
+            app:layout_constraintTop_toTopOf="@+id/editQuan" />
+
+    <TextView
+        android:id="@+id/textPrezzo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="30dp"
+        android:text="Prezzo*"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="@+id/textQuan"
+        app:layout_constraintTop_toBottomOf="@+id/textQuan"
+        app:layout_constraintBottom_toTopOf="@id/confermaaggiunta"/>
+
+    <EditText
+        android:id="@+id/editPrezzo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="@+id/textPrezzo"
+        app:layout_constraintEnd_toEndOf="@+id/editQuan"
+        app:layout_constraintStart_toStartOf="@+id/editQuan"
+        app:layout_constraintTop_toTopOf="@+id/textPrezzo" />
+
+    <TextView
+        android:id="@+id/textEuro"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="euro"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/editPrezzo"
+        app:layout_constraintEnd_toEndOf="@+id/textPezzi"
+        app:layout_constraintStart_toStartOf="@+id/textPezzi"
+        app:layout_constraintTop_toTopOf="@+id/editPrezzo" />
+
+        <Button
+            android:id="@+id/confermaaggiunta"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Conferma"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>
