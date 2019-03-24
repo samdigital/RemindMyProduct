@@ -7,14 +7,11 @@
     android:layout_height="fill_parent">
 
     <android.support.constraint.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+        android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AddProdottoActivity">
 
-    <android.support.v7.widget.Toolbar
+        <android.support.v7.widget.Toolbar
         android:id="@+id/toolbaradd"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -94,25 +91,53 @@
         app:layout_constraintStart_toStartOf="@+id/spinner"
         app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
-    <EditText
-        android:id="@+id/editScad"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:inputType="date"
-        app:layout_constraintEnd_toEndOf="@+id/textScad"
-        app:layout_constraintStart_toStartOf="@+id/textScad"
-        app:layout_constraintTop_toBottomOf="@+id/textScad" />
 
-    <TextView
-        android:id="@+id/textQuan"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="Quantita'*"
-        android:textSize="20dp"
-        app:layout_constraintStart_toStartOf="@+id/editScad"
-        app:layout_constraintTop_toBottomOf="@+id/editScad" />
+        <EditText
+            android:id="@+id/editTextgiorno"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:hint="Giorno"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="@+id/editTextmese"
+            app:layout_constraintStart_toStartOf="@+id/textScad"
+            app:layout_constraintTop_toTopOf="@+id/editTextmese" />
+
+
+        <EditText
+            android:id="@+id/editTextmese"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:inputType="date"
+            android:hint="Mese"
+            android:gravity="center"
+            app:layout_constraintEnd_toStartOf="@+id/editTextanno"
+            app:layout_constraintStart_toEndOf="@+id/editTextgiorno"
+            app:layout_constraintTop_toBottomOf="@id/textScad"/>
+
+
+        <EditText
+            android:id="@+id/editTextanno"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:hint="Anno"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="@+id/editTextmese"
+            app:layout_constraintEnd_toEndOf="@+id/textScad"
+            app:layout_constraintTop_toTopOf="@+id/editTextmese"/>
+
+
+        <TextView
+            android:id="@+id/textQuan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="Quantita'*"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="@+id/editTextgiorno"
+            app:layout_constraintTop_toBottomOf="@+id/editTextgiorno" />
 
         <EditText
             android:id="@+id/editQuan"
@@ -125,10 +150,8 @@
             android:inputType="number"
             app:layout_constraintBottom_toBottomOf="@+id/textQuan"
             app:layout_constraintEnd_toStartOf="@+id/textPezzi"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/textQuan"
-            app:layout_constraintTop_toTopOf="@+id/textQuan"
-            app:layout_constraintVertical_bias="0.444" />
+            app:layout_constraintTop_toTopOf="@+id/textQuan" />
 
         <TextView
             android:id="@+id/textPezzi"
@@ -137,20 +160,20 @@
             android:text="pezzi"
             android:textSize="20dp"
             app:layout_constraintBottom_toBottomOf="@+id/editQuan"
-            app:layout_constraintEnd_toEndOf="@+id/editScad"
+            app:layout_constraintEnd_toEndOf="@+id/editTextanno"
             app:layout_constraintTop_toTopOf="@+id/editQuan" />
 
-    <TextView
-        android:id="@+id/textPrezzo"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="30dp"
-        android:text="Prezzo*"
-        android:textSize="20dp"
-        app:layout_constraintStart_toStartOf="@+id/textQuan"
-        app:layout_constraintTop_toBottomOf="@+id/textQuan"
-        app:layout_constraintBottom_toTopOf="@id/confermaaggiunta"/>
+        <TextView
+            android:id="@+id/textPrezzo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="40dp"
+            android:text="Prezzo*"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toTopOf="@id/confermaaggiunta"
+            app:layout_constraintStart_toStartOf="@+id/textQuan"
+            app:layout_constraintTop_toBottomOf="@+id/textQuan" />
 
     <EditText
         android:id="@+id/editPrezzo"
@@ -181,6 +204,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+
 
 
     </android.support.constraint.ConstraintLayout>
