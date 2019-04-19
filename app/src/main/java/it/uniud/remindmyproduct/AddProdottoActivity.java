@@ -3,7 +3,6 @@ package it.uniud.remindmyproduct;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -94,7 +93,6 @@ public class AddProdottoActivity extends AppCompatActivity {
                     try {
                         String data_toParse = giorno.getText().toString()+"/"+mese.getText().toString()+"/"+anno.getText().toString();
                         scadenza = dateFormat.parse(data_toParse);
-                        Log.d("scadenze", data_toParse);
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
