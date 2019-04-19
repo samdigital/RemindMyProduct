@@ -80,26 +80,6 @@ public class ViewDispensaActivity extends AppCompatActivity {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-/*
-        Long id_back;
-        id_back=dbWrapper.createProduct("Test0H", "desc0", 0, 1, today.getTime(), 0.50);
-        Log.d("DB ACT", "id prodotto: "+id_back);
-        id_back=dbWrapper.createProduct("Test1H", "desc1", 1, 1, yesterday.getTime(), 11.50);
-        Log.d("DB ACT", "id prodotto: "+id_back);
-        id_back=dbWrapper.createProduct("Test2H", "desc2", 2, 2, tomorrow.getTime(), 22.50);
-        Log.d("DB ACT", "id prodotto: "+id_back);
-        id_back=dbWrapper.createProduct("Test3H", "desc3", 3, 3, today.getTime(), 33.50);
-        Log.d("DB ACT", "id prodotto: "+id_back);
-        id_back=dbWrapper.createProduct("Test4H", "desc4", 4, 4, yesterday.getTime(), 44.50);
-        Log.d("DB ACT", "id prodotto: "+id_back);
-        id_back=dbWrapper.createProduct("Test5H", "desc5", 5, 5, tomorrow.getTime(), 55.50);
-        Log.d("DB ACT", "id prodotto: "+id_back);
-        id_back=dbWrapper.createProduct("Test6H", "desc6", 6, 6, today.getTime(), 66.50);
-        Log.d("DB ACT", "id prodotto: "+id_back);
-
-        dbWrapper.close();
-*/
-
 
         barraRicerca = (SearchView) findViewById(R.id.barraRicerca);
         aggiungiListenerSearch();
