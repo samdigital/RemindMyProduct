@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -99,6 +100,7 @@ public class AddProdottoActivity extends AppCompatActivity {
                     dbWrapper.open();
                     dbWrapper.createProduct(nome.getText().toString(),descrizione.getText().toString(), spinner.getSelectedItemPosition(), Integer.parseInt(quantita.getText().toString()), scadenza.getTime(), Double.parseDouble(prezzo.getText().toString()) );
                     dbWrapper.close();
+                    Toast.makeText(getApplicationContext(), nome.getText().toString()+" "+getString(R.string.added_to_dispensa), Toast.LENGTH_SHORT).show();
                     finish();
                 }
 

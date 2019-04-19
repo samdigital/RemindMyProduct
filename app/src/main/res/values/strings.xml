@@ -55,4 +55,12 @@
     <string name="product_detail">Dettaglio Prodotto</string>
     <string name="remind_my_product">Remind My Product</string>
     <string name="in_scadenza_title">In Scadenza</string>
+    <string name="conferma">Conferma</string>
+    <string name="pezzi">pezzi</string>
+    <string name="day">Giorno</string>
+    <string name="month">Mese</string>
+    <string name="year">Anno</string>
+    <string name="descrizione">Descrizione</string>
+    <string name="nome">Nome</string>
+    <string name="added_to_dispensa">aggiunto alla dispensa.</string>
 </resources>
