@@ -1,7 +1,9 @@
 package it.uniud.remindmyproduct;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -38,6 +40,8 @@ public class ViewDispensaActivity extends AppCompatActivity {
     private ArrayList<Integer> icone = new ArrayList<Integer>();
     private ArrayList<Integer> ids_prodotto = new ArrayList<>();
 
+    private FloatingActionButton addProductFloating;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,9 +69,14 @@ public class ViewDispensaActivity extends AppCompatActivity {
 
         dbWrapper.open();
         Date today=new Date();
+        Date yesterday=new Date();
+        Date tomorrow=new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         try {
-            today = dateFormat.parse("14/03/2020");
+            today = dateFormat.parse("19/12/2019");
+            yesterday = dateFormat.parse("18/04/2019");
+            tomorrow = dateFormat.parse("20/04/2019");
+
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -75,25 +84,34 @@ public class ViewDispensaActivity extends AppCompatActivity {
         Long id_back;
         id_back=dbWrapper.createProduct("Test0H", "desc0", 0, 1, today.getTime(), 0.50);
         Log.d("DB ACT", "id prodotto: "+id_back);
-        id_back=dbWrapper.createProduct("Test1H", "desc1", 1, 1, today.getTime(), 11.50);
+        id_back=dbWrapper.createProduct("Test1H", "desc1", 1, 1, yesterday.getTime(), 11.50);
         Log.d("DB ACT", "id prodotto: "+id_back);
-        id_back=dbWrapper.createProduct("Test2H", "desc2", 2, 2, today.getTime(), 22.50);
+        id_back=dbWrapper.createProduct("Test2H", "desc2", 2, 2, tomorrow.getTime(), 22.50);
         Log.d("DB ACT", "id prodotto: "+id_back);
         id_back=dbWrapper.createProduct("Test3H", "desc3", 3, 3, today.getTime(), 33.50);
         Log.d("DB ACT", "id prodotto: "+id_back);
-        id_back=dbWrapper.createProduct("Test4H", "desc4", 4, 4, today.getTime(), 44.50);
+        id_back=dbWrapper.createProduct("Test4H", "desc4", 4, 4, yesterday.getTime(), 44.50);
         Log.d("DB ACT", "id prodotto: "+id_back);
-        id_back=dbWrapper.createProduct("Test5H", "desc5", 5, 5, today.getTime(), 55.50);
+        id_back=dbWrapper.createProduct("Test5H", "desc5", 5, 5, tomorrow.getTime(), 55.50);
         Log.d("DB ACT", "id prodotto: "+id_back);
         id_back=dbWrapper.createProduct("Test6H", "desc6", 6, 6, today.getTime(), 66.50);
         Log.d("DB ACT", "id prodotto: "+id_back);
 
         dbWrapper.close();
-
 */
+
 
         barraRicerca = (SearchView) findViewById(R.id.barraRicerca);
         aggiungiListenerSearch();
+
+        addProductFloating = findViewById(R.id.floatingActionButton);
+        addProductFloating.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentHome = new Intent(getApplicationContext(), AddProdottoActivity.class);
+                startActivity(intentHome);
+            }
+        });
     }
 
     @Override

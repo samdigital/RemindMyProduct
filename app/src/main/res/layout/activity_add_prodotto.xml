@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -28,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:text="Nome*"
         android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,7 +53,7 @@
         android:id="@+id/textDesc"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:text="Descrizione"
         android:textSize="20dp"
         app:layout_constraintStart_toStartOf="@+id/textNome"
@@ -74,7 +75,7 @@
         android:id="@+id/spinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="@+id/editDesc"
         app:layout_constraintStart_toStartOf="@+id/textDesc"
         app:layout_constraintTop_toBottomOf="@+id/editDesc" />
@@ -83,7 +84,7 @@
         android:id="@+id/textScad"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:text="Data scadenza*"
         android:textSize="20dp"
         android:gravity="center"
@@ -133,7 +134,7 @@
             android:id="@+id/textQuan"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
             android:text="Quantita'*"
             android:textSize="20dp"
             app:layout_constraintStart_toStartOf="@+id/editTextgiorno"
@@ -167,7 +168,7 @@
             android:id="@+id/textPrezzo"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
             android:layout_marginBottom="40dp"
             android:text="Prezzo*"
             android:textSize="20dp"
@@ -179,7 +180,7 @@
         android:id="@+id/editPrezzo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         app:layout_constraintBottom_toBottomOf="@+id/textPrezzo"
         app:layout_constraintEnd_toEndOf="@+id/editQuan"
         app:layout_constraintStart_toStartOf="@+id/editQuan"
@@ -189,7 +190,7 @@
         android:id="@+id/textEuro"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="euro"
+        android:text="@string/currency"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="@+id/editPrezzo"
         app:layout_constraintEnd_toEndOf="@+id/textPezzi"
@@ -200,13 +201,12 @@
             android:id="@+id/confermaaggiunta"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:background="@color/colorLightGreen"
             android:text="Conferma"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent" />
-
-
-
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

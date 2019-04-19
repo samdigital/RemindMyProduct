@@ -1,14 +1,18 @@
 package it.uniud.remindmyproduct;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class AddProdottoActivity extends AppCompatActivity {
 
@@ -23,7 +27,7 @@ public class AddProdottoActivity extends AppCompatActivity {
     EditText quantita;
     EditText prezzo;
 
-    //private DatabaseWrapper dbWrapper;
+    private DatabaseWrapper dbWrapper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +39,7 @@ public class AddProdottoActivity extends AppCompatActivity {
         setTitle("Aggiungi prodotto");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        //dbWrapper = new DatabaseWrapper(this);
+        dbWrapper = new DatabaseWrapper(this);
 
         popolaSpinnerCategorie();
 
@@ -48,8 +52,6 @@ public class AddProdottoActivity extends AppCompatActivity {
         prezzo = (EditText) findViewById(R.id.editPrezzo);
         conferma = (Button) findViewById(R.id.confermaaggiunta);
 
-        //dbWrapper.open();
-
 
         conferma.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,8 +62,6 @@ public class AddProdottoActivity extends AppCompatActivity {
                 boolean isAnno = anno.getText().toString().isEmpty();
                 boolean isQuantita = quantita.getText().toString().isEmpty();
                 boolean isPrezzo = prezzo.getText().toString().isEmpty();
-                //Integer valQuantita = Integer.parseInt(quantita.getText().toString());
-                //Double valPrezzo = Double.parseDouble(prezzo.getText().toString());
 
                 if (isNome){
                     nome.setError("Inserisci nome");
@@ -88,10 +88,20 @@ public class AddProdottoActivity extends AppCompatActivity {
                     prezzo.requestFocus();
                 }
                 if (!(isNome || isGiorno || isMese || isAnno || isQuantita || isPrezzo)){
-                    //dbWrapper.createProduct(nome.getText().toString(),descrizione.getText().toString(), 0, valQuantita, (long) 0,valPrezzo);
-                    //dbWrapper.close();
-                    Intent intentHome = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(intentHome);
+
+                    Date scadenza=new Date();
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                    try {
+                        String data_toParse = giorno.getText().toString()+"/"+mese.getText().toString()+"/"+anno.getText().toString();
+                        scadenza = dateFormat.parse(data_toParse);
+                        Log.d("scadenze", data_toParse);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    dbWrapper.open();
+                    dbWrapper.createProduct(nome.getText().toString(),descrizione.getText().toString(), spinner.getSelectedItemPosition(), Integer.parseInt(quantita.getText().toString()), scadenza.getTime(), Double.parseDouble(prezzo.getText().toString()) );
+                    dbWrapper.close();
+                    finish();
                 }
 
             }
