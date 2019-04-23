@@ -9,55 +9,55 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".AddProdottoActivity">
+        android:layout_height="match_parent"
+        tools:context=".AddProdottoActivity">
 
         <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbaradd"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+            android:id="@+id/toolbaradd"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textNome"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/nome"
-        android:textSize="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbaradd" />
+        <TextView
+            android:id="@+id/textNome"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/nome"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbaradd" />
 
-    <EditText
-        android:id="@+id/editNome"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginRight="30dp"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="@+id/textNome"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textNome"
-        app:layout_constraintTop_toTopOf="@+id/textNome" />
+        <EditText
+            android:id="@+id/editNome"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginRight="30dp"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toBottomOf="@+id/textNome"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textNome"
+            app:layout_constraintTop_toTopOf="@+id/textNome" />
 
-    <TextView
-        android:id="@+id/textDesc"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="@string/descrizione"
-        android:textSize="20dp"
-        app:layout_constraintStart_toStartOf="@+id/textNome"
-        app:layout_constraintTop_toBottomOf="@+id/textNome" />
+        <TextView
+            android:id="@+id/textDesc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/descrizione"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="@+id/textNome"
+            app:layout_constraintTop_toBottomOf="@+id/textNome" />
 
         <EditText
             android:id="@+id/editDesc"
@@ -71,64 +71,88 @@
             app:layout_constraintStart_toEndOf="@+id/textDesc"
             app:layout_constraintTop_toTopOf="@+id/textDesc" />
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="@+id/editDesc"
-        app:layout_constraintStart_toStartOf="@+id/textDesc"
-        app:layout_constraintTop_toBottomOf="@+id/editDesc" />
-
-    <TextView
-        android:id="@+id/textScad"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="@string/data_di_scadenza"
-        android:textSize="20dp"
-        android:gravity="center"
-        app:layout_constraintEnd_toEndOf="@+id/spinner"
-        app:layout_constraintStart_toStartOf="@+id/spinner"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
-
-
-        <EditText
-            android:id="@+id/editTextgiorno"
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:inputType="date"
-            android:hint="@string/day"
-            android:gravity="center"
-            app:layout_constraintBottom_toBottomOf="@+id/editTextmese"
-            app:layout_constraintStart_toStartOf="@+id/textScad"
-            app:layout_constraintTop_toTopOf="@+id/editTextmese" />
-
-
-        <EditText
-            android:id="@+id/editTextmese"
-            android:layout_width="70dp"
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:inputType="date"
-            android:hint="@string/month"
-            android:gravity="center"
-            app:layout_constraintEnd_toStartOf="@+id/editTextanno"
-            app:layout_constraintStart_toEndOf="@+id/editTextgiorno"
-            app:layout_constraintTop_toBottomOf="@id/textScad"/>
+            app:layout_constraintEnd_toEndOf="@+id/editDesc"
+            app:layout_constraintStart_toStartOf="@+id/textDesc"
+            app:layout_constraintTop_toBottomOf="@+id/editDesc" />
 
-
-        <EditText
-            android:id="@+id/editTextanno"
-            android:layout_width="70dp"
+        <TextView
+            android:id="@+id/textScad"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:inputType="date"
-            android:hint="@string/year"
+            android:layout_marginTop="30dp"
             android:gravity="center"
-            app:layout_constraintBottom_toBottomOf="@+id/editTextmese"
-            app:layout_constraintEnd_toEndOf="@+id/textScad"
-            app:layout_constraintTop_toTopOf="@+id/editTextmese"/>
+            android:text="@string/data_di_scadenza"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toEndOf="@+id/spinner"
+            app:layout_constraintStart_toStartOf="@+id/spinner"
+            app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
+        <TextView
+            android:id="@+id/textgiorno"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/day"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="@+id/textScad"
+            app:layout_constraintTop_toBottomOf="@+id/textScad" />
+
+        <Spinner
+            android:id="@+id/spinnergiorno"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="@+id/textgiorno"
+            app:layout_constraintEnd_toEndOf="@+id/textScad"
+            app:layout_constraintStart_toEndOf="@+id/textgiorno"
+            app:layout_constraintTop_toTopOf="@+id/textgiorno" />
+
+        <TextView
+            android:id="@+id/textmese"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/month"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="@+id/textgiorno"
+            app:layout_constraintTop_toBottomOf="@+id/textgiorno" />
+
+        <Spinner
+            android:id="@+id/spinnermese"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="@+id/textmese"
+            app:layout_constraintEnd_toEndOf="@+id/spinnergiorno"
+            app:layout_constraintStart_toStartOf="@+id/spinnergiorno"
+            app:layout_constraintTop_toTopOf="@+id/textmese" />
+
+        <TextView
+            android:id="@+id/textanno"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/year"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="@+id/textmese"
+            app:layout_constraintTop_toBottomOf="@+id/textmese" />
+
+        <Spinner
+            android:id="@+id/spinneranno"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="@+id/textanno"
+            app:layout_constraintEnd_toEndOf="@+id/spinnermese"
+            app:layout_constraintStart_toStartOf="@+id/spinnermese"
+            app:layout_constraintTop_toTopOf="@+id/textanno" />
 
         <TextView
             android:id="@+id/textQuan"
@@ -137,8 +161,8 @@
             android:layout_marginTop="30dp"
             android:text="@string/quantita"
             android:textSize="20dp"
-            app:layout_constraintStart_toStartOf="@+id/editTextgiorno"
-            app:layout_constraintTop_toBottomOf="@+id/editTextgiorno" />
+            app:layout_constraintStart_toStartOf="@+id/textanno"
+            app:layout_constraintTop_toBottomOf="@+id/textanno" />
 
         <EditText
             android:id="@+id/editQuan"
@@ -151,8 +175,10 @@
             android:inputType="number"
             app:layout_constraintBottom_toBottomOf="@+id/textQuan"
             app:layout_constraintEnd_toStartOf="@+id/textPezzi"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/textQuan"
-            app:layout_constraintTop_toTopOf="@+id/textQuan" />
+            app:layout_constraintTop_toTopOf="@+id/textQuan"
+            app:layout_constraintVertical_bias="0.653" />
 
         <TextView
             android:id="@+id/textPezzi"
@@ -161,7 +187,7 @@
             android:text="@string/pezzi"
             android:textSize="20dp"
             app:layout_constraintBottom_toBottomOf="@+id/editQuan"
-            app:layout_constraintEnd_toEndOf="@+id/editTextanno"
+            app:layout_constraintEnd_toEndOf="@+id/spinnergiorno"
             app:layout_constraintTop_toTopOf="@+id/editQuan" />
 
         <TextView
@@ -176,26 +202,29 @@
             app:layout_constraintStart_toStartOf="@+id/textQuan"
             app:layout_constraintTop_toBottomOf="@+id/textQuan" />
 
-    <EditText
-        android:id="@+id/editPrezzo"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        app:layout_constraintBottom_toBottomOf="@+id/textPrezzo"
-        app:layout_constraintEnd_toEndOf="@+id/editQuan"
-        app:layout_constraintStart_toStartOf="@+id/editQuan"
-        app:layout_constraintTop_toTopOf="@+id/textPrezzo" />
+        <EditText
+            android:id="@+id/editPrezzo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            app:layout_constraintBottom_toBottomOf="@+id/textPrezzo"
+            app:layout_constraintEnd_toEndOf="@+id/editQuan"
+            app:layout_constraintStart_toStartOf="@+id/editQuan"
+            app:layout_constraintTop_toTopOf="@+id/textPrezzo" />
 
-    <TextView
-        android:id="@+id/textEuro"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/currency"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/editPrezzo"
-        app:layout_constraintEnd_toEndOf="@+id/textPezzi"
-        app:layout_constraintStart_toStartOf="@+id/textPezzi"
-        app:layout_constraintTop_toTopOf="@+id/editPrezzo" />
+        <TextView
+            android:id="@+id/textEuro"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/currency"
+            android:textSize="20dp"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="@+id/editPrezzo"
+            app:layout_constraintEnd_toEndOf="@+id/textPezzi"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/textPezzi"
+            app:layout_constraintTop_toTopOf="@+id/editPrezzo"
+            app:layout_constraintVertical_bias="0.444" />
 
         <Button
             android:id="@+id/confermaaggiunta"
@@ -207,6 +236,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent" />
+
+
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>
