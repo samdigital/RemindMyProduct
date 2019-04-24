@@ -117,8 +117,6 @@ public class AddProdottoActivity extends AppCompatActivity implements AdapterVie
                     try {
                         String data_toParse = giorno.getSelectedItem().toString()+"/"+(mese.getSelectedItemPosition()+1)+"/"+anno.getSelectedItem().toString();
                         scadenza.setTime(dateFormat.parse(data_toParse));
-                        Log.d("scadenza", data_toParse);
-                        Log.d("data", "ciao"+data_toParse);
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
