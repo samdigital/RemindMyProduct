@@ -77,9 +77,9 @@ public class AddProdottoActivity extends AppCompatActivity implements AdapterVie
                 }
 
                 if (mese.getSelectedItem().toString().equals("Febbraio") || mese.getSelectedItem().toString().equals("Aprile") || mese.getSelectedItem().toString().equals("Giugno") || mese.getSelectedItem().toString().equals("Settembre") || mese.getSelectedItem().toString().equals("Novembre")) {
-                    int giornata = Integer.parseInt(giorno.getSelectedItem().toString());
+                    int giornata = (int) giorno.getSelectedItem();
                     if (mese.getSelectedItem().toString().equals("Febbraio")) {
-                        int annata = Integer.parseInt(anno.getSelectedItem().toString());
+                        int annata = (int) anno.getSelectedItem();
                         if ((giornata > 28)) {
                             if (((giornata == 29) && (annata%4 == 0))) {
                                 isData = true;
@@ -100,9 +100,9 @@ public class AddProdottoActivity extends AppCompatActivity implements AdapterVie
 
 
                 if (isData == true){
-                    int giornoscad = Integer.parseInt(giorno.getSelectedItem().toString());
+                    int giornoscad = (int) giorno.getSelectedItem();
                     int mesescad = mese.getSelectedItemPosition();
-                    int annoscad = Integer.parseInt(anno.getSelectedItem().toString());
+                    int annoscad = (int) anno.getSelectedItem();
                     Calendar today = new GregorianCalendar();
                     if (giornoscad < today.get(Calendar.DAY_OF_MONTH) && (mesescad <= today.get(Calendar.MONTH)) && (annoscad <= today.get(Calendar.YEAR))){
                         Toast.makeText(getApplicationContext(), "La data di scadenza è precedente alla data odierna", Toast.LENGTH_LONG).show();
