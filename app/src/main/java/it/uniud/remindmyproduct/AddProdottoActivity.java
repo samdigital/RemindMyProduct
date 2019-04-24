@@ -149,7 +149,11 @@ public class AddProdottoActivity extends AppCompatActivity implements AdapterVie
 
     public void popolaSpinnerGiorno(){
         giorno = (Spinner) findViewById(R.id.spinnergiorno);
-        ArrayAdapter<CharSequence> dataAdapter = ArrayAdapter.createFromResource(this, R.array.elencoGiorni, android.R.layout.simple_spinner_item);
+        Integer giorni[] = new Integer[31];
+        for(int i=0; i<31; i++) {
+            giorni[i] = i+1;
+        }
+        ArrayAdapter<Integer> dataAdapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, giorni);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         giorno.setAdapter(dataAdapter);
         giorno.setOnItemSelectedListener(this);
@@ -165,7 +169,12 @@ public class AddProdottoActivity extends AppCompatActivity implements AdapterVie
 
     public void popolaSpinnerAnno(){
         anno = (Spinner) findViewById(R.id.spinneranno);
-        ArrayAdapter<CharSequence> dataAdapter = ArrayAdapter.createFromResource(this, R.array.elencoAnni, android.R.layout.simple_spinner_item);
+        Calendar today = new GregorianCalendar();
+        Integer anni[] = new Integer[16];
+        for(int i=0; i<16; i++) {
+            anni[i] = today.get(Calendar.YEAR)+i;
+        }
+        ArrayAdapter<Integer> dataAdapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, anni);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         anno.setAdapter(dataAdapter);
         anno.setOnItemSelectedListener(this);
