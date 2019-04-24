@@ -3,6 +3,7 @@ package it.uniud.remindmyproduct;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -10,14 +11,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
-
-import java.lang.reflect.Array;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.GregorianCalendar;
 
 public class AddProdottoActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -105,9 +102,9 @@ public class AddProdottoActivity extends AppCompatActivity implements AdapterVie
                 if (isData == true){
                     int giornoscad = Integer.parseInt(giorno.getSelectedItem().toString());
                     int mesescad = mese.getSelectedItemPosition();
-                    int annoscad = Integer.parseInt(anno.getSelectedItem().toString()) - 1900;
-                    Date data = new Date();
-                    if ((giornoscad < data.getDate()) && (mesescad <= data.getMonth()) && (annoscad <= data.getYear())){
+                    int annoscad = Integer.parseInt(anno.getSelectedItem().toString());
+                    Calendar today = new GregorianCalendar();
+                    if (giornoscad < today.get(Calendar.DAY_OF_MONTH) && (mesescad <= today.get(Calendar.MONTH)) && (annoscad <= today.get(Calendar.YEAR))){
                         Toast.makeText(getApplicationContext(), "La data di scadenza è precedente alla data odierna", Toast.LENGTH_LONG).show();
                         isData = false;
                     }
@@ -115,16 +112,18 @@ public class AddProdottoActivity extends AppCompatActivity implements AdapterVie
 
 
                 if (!(isNome || isQuantita || isPrezzo || !isData)){
-                    Date scadenza=new Date();
                     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                    Calendar scadenza = new GregorianCalendar();
                     try {
-                        String data_toParse = giorno.getSelectedItem().toString()+"/"+mese.getSelectedItem().toString()+"/"+anno.getSelectedItem().toString();
-                        scadenza = dateFormat.parse(data_toParse);
+                        String data_toParse = giorno.getSelectedItem().toString()+"/"+(mese.getSelectedItemPosition()+1)+"/"+anno.getSelectedItem().toString();
+                        scadenza.setTime(dateFormat.parse(data_toParse));
+                        Log.d("scadenza", data_toParse);
+                        Log.d("data", "ciao"+data_toParse);
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
                     dbWrapper.open();
-                    dbWrapper.createProduct(nome.getText().toString(),descrizione.getText().toString(), spinner.getSelectedItemPosition(), Integer.parseInt(quantita.getText().toString()), scadenza.getTime(), Double.parseDouble(prezzo.getText().toString()) );
+                    dbWrapper.createProduct(nome.getText().toString(),descrizione.getText().toString(), spinner.getSelectedItemPosition(), Integer.parseInt(quantita.getText().toString()), scadenza.getTimeInMillis(), Double.parseDouble(prezzo.getText().toString()) );
                     dbWrapper.close();
                     Toast.makeText(getApplicationContext(), nome.getText().toString()+" "+getString(R.string.added_to_dispensa), Toast.LENGTH_SHORT).show();
                     finish();
@@ -177,7 +176,7 @@ public class AddProdottoActivity extends AppCompatActivity implements AdapterVie
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String text = parent.getItemAtPosition(position).toString();
-        Toast.makeText(parent.getContext(),text,Toast.LENGTH_SHORT).show();
+        //Toast.makeText(parent.getContext(),text,Toast.LENGTH_SHORT).show();
     }
 
     @Override
