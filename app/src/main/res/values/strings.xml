@@ -63,6 +63,16 @@
     <string name="descrizione">Descrizione</string>
     <string name="nome">Nome</string>
     <string name="added_to_dispensa">aggiunto alla dispensa.</string>
+    <string name="insert_name">Inserisci nome</string>
+    <string name="insert_qta">Inserisci quantità</string>
+    <string name="insert_price">Inserisci prezzo</string>
+    <string name="february">Febbraio</string>
+    <string name="april">Aprile</string>
+    <string name="june">Giugno</string>
+    <string name="september">Settembre</string>
+    <string name="november">Novembre</string>
+    <string name="insert_correctDate">Inserire la data corretta</string>
+    <string name="expiredate_before_today">La data di scadenza è precedente alla data odierna</string>
     <string-array name="elencoMesi">
         <item> Gennaio </item> <item> Febbraio </item> <item> Marzo </item> <item> Aprile </item>
         <item> Maggio </item> <item> Giugno </item> <item> Luglio </item> <item> Agosto </item>

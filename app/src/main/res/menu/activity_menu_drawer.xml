@@ -2,11 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:title="Home"
-        android:id="@+id/drawer_home"
-        android:icon="@drawable/icon_home"
-        />
-    <item
         android:title="La Mia Dispensa"
         android:id="@+id/drawer_dispensa"
         android:icon="@drawable/icon_lista"

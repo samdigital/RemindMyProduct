@@ -64,33 +64,33 @@ public class AddProdottoActivity extends AppCompatActivity implements AdapterVie
                 boolean isData = false;
 
                 if (isNome){
-                    nome.setError("Inserisci nome");
+                    nome.setError(getString(R.string.insert_name));
                     nome.requestFocus();
                 }
                 if (isQuantita){
-                    quantita.setError("Inserisci quantità");
+                    quantita.setError(getString(R.string.insert_qta));
                     quantita.requestFocus();
                 }
                 if (isPrezzo){
-                    prezzo.setError("Inserisci prezzo");
+                    prezzo.setError(getString(R.string.insert_price));
                     prezzo.requestFocus();
                 }
 
-                if (mese.getSelectedItem().toString().equals("Febbraio") || mese.getSelectedItem().toString().equals("Aprile") || mese.getSelectedItem().toString().equals("Giugno") || mese.getSelectedItem().toString().equals("Settembre") || mese.getSelectedItem().toString().equals("Novembre")) {
+                if (mese.getSelectedItem().toString().equals(getString(R.string.february)) || mese.getSelectedItem().toString().equals(getString(R.string.april)) || mese.getSelectedItem().toString().equals(getString(R.string.june)) || mese.getSelectedItem().toString().equals(getString(R.string.september)) || mese.getSelectedItem().toString().equals(getString(R.string.november))) {
                     int giornata = (int) giorno.getSelectedItem();
-                    if (mese.getSelectedItem().toString().equals("Febbraio")) {
+                    if (mese.getSelectedItem().toString().equals(getString(R.string.february))) {
                         int annata = (int) anno.getSelectedItem();
                         if ((giornata > 28)) {
                             if (((giornata == 29) && (annata%4 == 0))) {
                                 isData = true;
                             } else {
-                                Toast.makeText(getApplicationContext(), "Inserire la data corretta", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), getString(R.string.insert_correctDate), Toast.LENGTH_LONG).show();
                             }
                         } else {
                             isData = true;
                         }
                     } else if (giornata == 31) {
-                        Toast.makeText(getApplicationContext(), "Inserire la data corretta", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), getString(R.string.insert_correctDate), Toast.LENGTH_LONG).show();
                     } else {
                         isData = true;
                     }
@@ -105,7 +105,7 @@ public class AddProdottoActivity extends AppCompatActivity implements AdapterVie
                     int annoscad = (int) anno.getSelectedItem();
                     Calendar today = new GregorianCalendar();
                     if (giornoscad < today.get(Calendar.DAY_OF_MONTH) && (mesescad <= today.get(Calendar.MONTH)) && (annoscad <= today.get(Calendar.YEAR))){
-                        Toast.makeText(getApplicationContext(), "La data di scadenza è precedente alla data odierna", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), getString(R.string.expiredate_before_today), Toast.LENGTH_LONG).show();
                         isData = false;
                     }
                 }
@@ -183,7 +183,6 @@ public class AddProdottoActivity extends AppCompatActivity implements AdapterVie
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String text = parent.getItemAtPosition(position).toString();
-        //Toast.makeText(parent.getContext(),text,Toast.LENGTH_SHORT).show();
     }
 
     @Override
