@@ -56,6 +56,6 @@ public class NotificheActivity extends AppCompatActivity {
         actsca = scadenzaact.isChecked();
         actqua = quantitaact.isChecked();
         //Toast.makeText(getApplicationContext(),Boolean.toString(actsca),Toast.LENGTH_SHORT).show();
-        Toast.makeText(getApplicationContext(),Boolean.toString(actqua),Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),Boolean.toString(actqua),Toast.LENGTH_SHORT).show();
     }
 }
