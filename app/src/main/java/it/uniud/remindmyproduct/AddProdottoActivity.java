@@ -103,7 +103,9 @@ public class AddProdottoActivity extends AppCompatActivity implements AdapterVie
                     int mesescad = mese.getSelectedItemPosition();
                     int annoscad = (int) anno.getSelectedItem();
                     Calendar today = new GregorianCalendar();
-                    if (giornoscad < today.get(Calendar.DAY_OF_MONTH) && (mesescad <= today.get(Calendar.MONTH)) && (annoscad <= today.get(Calendar.YEAR))){
+                    Calendar day = new GregorianCalendar();
+                    day.set(annoscad, mesescad, giornoscad);
+                    if (day.before(today)){
                         Toast.makeText(getApplicationContext(), getString(R.string.expiredate_before_today), Toast.LENGTH_LONG).show();
                         isData = false;
                     }
