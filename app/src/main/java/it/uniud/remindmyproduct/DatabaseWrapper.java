@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.Date;
 
+
 public class DatabaseWrapper {
 
     private Context context;
@@ -27,6 +28,17 @@ public class DatabaseWrapper {
     public static final String PRODUCT_ISOPEN = "iopen";
     public static final String PRODUCT_CATEGORY = "category";
 
+
+    private static final String NOTIFICHE_TABLE = "notifiche";
+
+    public static final String NOTIFICHE_ID = "id_notifiche";
+    public static final String NOTIFICHE_QUANTITY = "notifiche_quantity";
+    public static final String VALORE_NOTIFICHE_QUANTITY = "valore_notifiche_quantity";
+    public static final String NOTIFICHE_SCADENZA = "notifiche_scadenza";
+    public static final String VALORE_NOTIFICHE_SCADENZA = "valore_notifiche_scadenza";
+    public static final String NOTIFICHE_DATE = "notifiche_date";
+
+
     public DatabaseWrapper(Context context) {
         this.context = context;
     }
@@ -36,7 +48,7 @@ public class DatabaseWrapper {
         private static final String DATABASE_NAME = "remindmyproduct.db";
         private static final int DATABASE_VERSION = 1;
 
-        private static final String DATABASE_CREATE = "CREATE TABLE " + DATABASE_TABLE + " ("
+        private static final String DATABASE_CREATE_PRODUCT = "CREATE TABLE " + DATABASE_TABLE + " ("
                 + PRODUCT_ID + " integer primary key autoincrement, "
                 + PRODUCT_NAME + " text not null, "
                 + PRODUCT_DESCRIPTION + " text, "
@@ -47,18 +59,29 @@ public class DatabaseWrapper {
                 + PRODUCT_ISOPEN + " boolean, "
                 + PRODUCT_CATEGORY + " integer);";
 
+        private static final String DATABASE_CREATE_NOTIFICHE = "CREATE TABLE " + NOTIFICHE_TABLE + " ("
+                + NOTIFICHE_ID + " integer primary key autoincrement, "
+                + NOTIFICHE_QUANTITY + " boolean, "
+                + NOTIFICHE_SCADENZA + " boolean, "
+                + NOTIFICHE_DATE + " Long, "
+                + VALORE_NOTIFICHE_QUANTITY + " integer, "
+                + VALORE_NOTIFICHE_SCADENZA + " integer); ";
+
+
         public DatabaseHelper(Context context) {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
         }
 
         @Override
         public void onCreate(SQLiteDatabase database) {
-            database.execSQL(DATABASE_CREATE);
+            database.execSQL(DATABASE_CREATE_PRODUCT);
+            database.execSQL(DATABASE_CREATE_NOTIFICHE);
         }
 
         @Override
         public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
             database.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE);
+            database.execSQL("DROP TABLE IF EXISTS " + NOTIFICHE_TABLE);
             onCreate(database);
         }
     }
@@ -85,12 +108,27 @@ public class DatabaseWrapper {
         values.put(PRODUCT_INSERTED, oggi.getTime());
         values.put(PRODUCT_VALUE, valore);
         values.put(PRODUCT_ISOPEN, false);
-        return  values;
+        return values;
+    }
+
+    private ContentValues createContentValuesNotifiche(boolean quantity, boolean scadenza, Integer val_quantity, Integer val_scadenza, Long data_scadenza){
+        ContentValues values = new ContentValues();
+        values.put(NOTIFICHE_QUANTITY, quantity);
+        values.put(NOTIFICHE_SCADENZA, scadenza);
+        values.put(VALORE_NOTIFICHE_QUANTITY, val_quantity);
+        values.put(VALORE_NOTIFICHE_SCADENZA, val_scadenza);
+        values.put(NOTIFICHE_DATE, data_scadenza);
+        return values;
     }
 
     public long createProduct(String nome, String descrizione, Integer categoria, Integer quantita, Long scadenza, Double valore) {
         ContentValues initialValues = createContentValues(nome, descrizione, categoria, quantita, scadenza, valore);
         return database.insertOrThrow(DATABASE_TABLE, null, initialValues);
+    }
+
+    public long createNotifiche(boolean scadenza, boolean quantita, Integer val_scadenza, Integer val_quantita, Long date){
+        ContentValues defaultvalues = createContentValuesNotifiche(quantita, scadenza, val_quantita, val_scadenza, date);
+        return database.insertOrThrow(NOTIFICHE_TABLE, null, defaultvalues);
     }
 
     public Cursor getProductList(int category, String filter) {
@@ -119,6 +157,19 @@ public class DatabaseWrapper {
         return database.query(true, DATABASE_TABLE, new String[] {PRODUCT_ID, PRODUCT_NAME, PRODUCT_DESCRIPTION, PRODUCT_EXPIREDATE, PRODUCT_INSERTED, PRODUCT_QUANTITY, PRODUCT_VALUE, PRODUCT_ISOPEN}, PRODUCT_ID + "=" + id_prodotto, null, null, null, null, null);
     }
 
+    public Cursor getNotifiche(){
+        return database.query(NOTIFICHE_TABLE, new String[] {NOTIFICHE_ID,NOTIFICHE_QUANTITY, NOTIFICHE_SCADENZA, VALORE_NOTIFICHE_QUANTITY, VALORE_NOTIFICHE_SCADENZA},null , null, null, null,null);
+    }
+
+    public boolean updateNotifiche(Integer id_notifiche, boolean quantity, boolean scadenza, Integer val_quantity, Integer val_scadenza){
+        ContentValues values = new ContentValues();
+        values.put(NOTIFICHE_QUANTITY, quantity);
+        values.put(NOTIFICHE_SCADENZA, scadenza);
+        values.put(VALORE_NOTIFICHE_QUANTITY, val_quantity);
+        values.put(VALORE_NOTIFICHE_SCADENZA, val_scadenza);
+        return database.update(NOTIFICHE_TABLE, values, NOTIFICHE_ID + " = " + id_notifiche, null)>0;
+    }
+
     public boolean setOpen(long id_prodotto) {
         ContentValues values = new ContentValues();
         values.put(PRODUCT_ISOPEN, true);
@@ -135,6 +186,5 @@ public class DatabaseWrapper {
     public boolean consumaTutto(long id_prodotto) {
         return database.delete(DATABASE_TABLE, PRODUCT_ID + "=" + id_prodotto, null)>0;
     }
-
 
 }

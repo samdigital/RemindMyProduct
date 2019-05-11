@@ -54,10 +54,9 @@
             android:id="@+id/insscadenza"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="20dp"
             android:inputType="number"
+            android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="@+id/scadenzaon"
             app:layout_constraintStart_toStartOf="@+id/scadenzaon"
             app:layout_constraintTop_toBottomOf="@+id/scadenzaon" />
@@ -77,10 +76,9 @@
             android:id="@+id/quantitaon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
             android:layout_marginTop="70dp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/scadenzaon"
+            app:layout_constraintStart_toStartOf="@+id/scadenzaon"
             app:layout_constraintTop_toBottomOf="@+id/insscadenza" />
 
         <TextView
@@ -106,6 +104,7 @@
             android:layout_marginTop="12dp"
             android:layout_marginBottom="30dp"
             android:inputType="number"
+            android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/quantitaon"
             app:layout_constraintStart_toStartOf="@+id/quantitaon"

@@ -14,6 +14,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.GregorianCalendar;
+
 public class MainActivity extends AppCompatActivity {
 
     DrawerLayout drawer;
@@ -36,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main_drawer);
-
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -75,8 +76,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        popolaHome();
+        dbWrapper.open();
+        cursor = dbWrapper.getNotifiche();
+        if(!cursor.moveToNext()){
+            Long oggi = new GregorianCalendar().getTimeInMillis();
+            dbWrapper.createNotifiche(false,false, 3, 3, oggi );
+        }
+        cursor.close();
+        dbWrapper.close();
 
+        popolaHome();
+        notifiche();
 
         drawer = (DrawerLayout) findViewById(R.id.main_drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.open, R.string.close);
@@ -133,8 +143,10 @@ public class MainActivity extends AppCompatActivity {
         } else {
             prodotto3.setText("");
         }
-        cursor.close();
-        dbWrapper.close();
+    }
+
+    private void notifiche(){
+
     }
 
     @Override

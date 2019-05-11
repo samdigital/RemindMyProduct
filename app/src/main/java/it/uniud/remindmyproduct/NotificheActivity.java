@@ -1,25 +1,30 @@
 package it.uniud.remindmyproduct;
 
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
 public class NotificheActivity extends AppCompatActivity {
 
     Toolbar toolbar;
 
-    private String valsca;
-    private String valqua;
-    private boolean actsca;
-    private boolean actqua;
+    int id_notifiche;
+    boolean notifiche_scadenza;
+    boolean notifiche_quantita;
+    int valore_notifiche_scadenza;
+    int valore_notifiche_quantita;
 
     EditText scadenza;
     EditText quantita;
-    ToggleButton scadenzaact;
-    ToggleButton quantitaact;
+    ToggleButton scadenzabool;
+    ToggleButton quantitabool;
+
+    private DatabaseWrapper dbWrapper;
+    private Cursor cursor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,12 +36,65 @@ public class NotificheActivity extends AppCompatActivity {
         setTitle("Notifiche");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        dbWrapper = new DatabaseWrapper(this);
+
+        dbWrapper.open();
 
         scadenza = (EditText) findViewById(R.id.insscadenza);
         quantita = (EditText) findViewById(R.id.insquantita);
-        scadenzaact = (ToggleButton) findViewById(R.id.scadenzaon);
-        quantitaact = (ToggleButton) findViewById(R.id.quantitaon);
+        scadenzabool = (ToggleButton) findViewById(R.id.scadenzaon);
+        quantitabool = (ToggleButton) findViewById(R.id.quantitaon);
 
+        cursor = dbWrapper.getNotifiche();
+        cursor.moveToFirst();
+
+        id_notifiche = cursor.getInt(cursor.getColumnIndex(DatabaseWrapper.NOTIFICHE_ID));
+        notifiche_scadenza = (cursor.getInt(cursor.getColumnIndex(DatabaseWrapper.NOTIFICHE_SCADENZA))) == 1;
+        notifiche_quantita = (cursor.getInt(cursor.getColumnIndex(DatabaseWrapper.NOTIFICHE_QUANTITY))) == 1;
+        valore_notifiche_scadenza = cursor.getInt(cursor.getColumnIndex(DatabaseWrapper.VALORE_NOTIFICHE_SCADENZA));
+        valore_notifiche_quantita = cursor.getInt(cursor.getColumnIndex(DatabaseWrapper.VALORE_NOTIFICHE_QUANTITY));
+
+        scadenzabool.setChecked(notifiche_scadenza);
+        quantitabool.setChecked(notifiche_quantita);
+        scadenza.setText(Integer.toString(valore_notifiche_scadenza));
+        quantita.setText(Integer.toString(valore_notifiche_quantita));
+
+        cursor.close();
+
+        /*
+        scadenza.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                valore_notifiche_scadenza = Integer.valueOf(scadenza.getText().toString());
+                dbWrapper.updateNotifiche(id_notifiche, notifiche_quantita, notifiche_scadenza, valore_notifiche_quantita, valore_notifiche_scadenza);
+            }
+        });
+
+
+        quantita.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                valore_notifiche_quantita = Integer.valueOf(quantita.getText().toString());
+                dbWrapper.updateNotifiche(id_notifiche, notifiche_quantita, notifiche_scadenza, valore_notifiche_quantita, valore_notifiche_scadenza);
+            }
+        });
+        */
+
+        scadenzabool.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                notifiche_scadenza = scadenzabool.isChecked();
+                dbWrapper.updateNotifiche(id_notifiche, notifiche_quantita, notifiche_scadenza, valore_notifiche_quantita, valore_notifiche_scadenza);
+            }
+        });
+
+        quantitabool.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                notifiche_quantita = quantitabool.isChecked();
+                dbWrapper.updateNotifiche(id_notifiche, notifiche_quantita, notifiche_scadenza, valore_notifiche_quantita, valore_notifiche_scadenza);
+            }
+        });
     }
 
     @Override
@@ -49,13 +107,9 @@ public class NotificheActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        valsca = scadenza.getText().toString();
-        valqua = quantita.getText().toString();
-        //Toast.makeText(getApplicationContext(),valsca,Toast.LENGTH_LONG).show();
-        //Toast.makeText(getApplicationContext(),valqua,Toast.LENGTH_SHORT).show();
-        actsca = scadenzaact.isChecked();
-        actqua = quantitaact.isChecked();
-        //Toast.makeText(getApplicationContext(),Boolean.toString(actsca),Toast.LENGTH_SHORT).show();
-        //Toast.makeText(getApplicationContext(),Boolean.toString(actqua),Toast.LENGTH_SHORT).show();
+        valore_notifiche_scadenza = Integer.valueOf(scadenza.getText().toString());
+        valore_notifiche_quantita = Integer.valueOf(quantita.getText().toString());
+        dbWrapper.updateNotifiche(id_notifiche, notifiche_quantita, notifiche_scadenza, valore_notifiche_quantita, valore_notifiche_scadenza);
     }
+
 }
