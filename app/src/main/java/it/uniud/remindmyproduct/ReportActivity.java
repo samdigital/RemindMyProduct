@@ -38,7 +38,7 @@ public class ReportActivity extends AppCompatActivity {
         dbWrapper.open();
         cursor=dbWrapper.getProductScaduti();
         while(cursor.moveToNext()) {
-            num_of_product++;
+            num_of_product+=cursor.getInt(cursor.getColumnIndex(DatabaseWrapper.PRODUCT_QUANTITY));
             value_of_product+=cursor.getDouble(cursor.getColumnIndex(DatabaseWrapper.PRODUCT_VALUE));
         }
         cursor.close();
