@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
 import java.util.Date;
 
 
@@ -99,7 +98,6 @@ public class DatabaseWrapper {
     private ContentValues createContentValues(String nome, String descrizione, Integer categoria, Integer quantita, Long scadenza, Double valore) {
         ContentValues values = new ContentValues();
         Date oggi = new Date();
-
         values.put(PRODUCT_NAME, nome);
         values.put(PRODUCT_DESCRIPTION, descrizione);
         values.put(PRODUCT_CATEGORY, categoria);
@@ -111,13 +109,14 @@ public class DatabaseWrapper {
         return values;
     }
 
-    private ContentValues createContentValuesNotifiche(boolean quantity, boolean scadenza, Integer val_quantity, Integer val_scadenza, Long data_scadenza){
+    private ContentValues createContentValuesNotifiche(boolean quantity, boolean scadenza, Integer val_quantity, Integer val_scadenza){
         ContentValues values = new ContentValues();
+        Date oggi = new Date();
         values.put(NOTIFICHE_QUANTITY, quantity);
         values.put(NOTIFICHE_SCADENZA, scadenza);
         values.put(VALORE_NOTIFICHE_QUANTITY, val_quantity);
         values.put(VALORE_NOTIFICHE_SCADENZA, val_scadenza);
-        values.put(NOTIFICHE_DATE, data_scadenza);
+        values.put(NOTIFICHE_DATE, oggi.getTime());
         return values;
     }
 
@@ -126,8 +125,8 @@ public class DatabaseWrapper {
         return database.insertOrThrow(DATABASE_TABLE, null, initialValues);
     }
 
-    public long createNotifiche(boolean scadenza, boolean quantita, Integer val_scadenza, Integer val_quantita, Long date){
-        ContentValues defaultvalues = createContentValuesNotifiche(quantita, scadenza, val_quantita, val_scadenza, date);
+    public long createNotifiche(boolean scadenza, boolean quantita, Integer val_scadenza, Integer val_quantita){
+        ContentValues defaultvalues = createContentValuesNotifiche(quantita, scadenza, val_quantita, val_scadenza);
         return database.insertOrThrow(NOTIFICHE_TABLE, null, defaultvalues);
     }
 
@@ -158,16 +157,30 @@ public class DatabaseWrapper {
     }
 
     public Cursor getNotifiche(){
-        return database.query(NOTIFICHE_TABLE, new String[] {NOTIFICHE_ID,NOTIFICHE_QUANTITY, NOTIFICHE_SCADENZA, VALORE_NOTIFICHE_QUANTITY, VALORE_NOTIFICHE_SCADENZA},null , null, null, null,null);
+        return database.query(NOTIFICHE_TABLE, new String[] {NOTIFICHE_ID,NOTIFICHE_QUANTITY, NOTIFICHE_SCADENZA, VALORE_NOTIFICHE_QUANTITY, VALORE_NOTIFICHE_SCADENZA, NOTIFICHE_DATE},null , null, null, null,null);
     }
 
-    public boolean updateNotifiche(Integer id_notifiche, boolean quantity, boolean scadenza, Integer val_quantity, Integer val_scadenza){
+    public void updateNotifiche(Integer id_notifiche, boolean quantity, boolean scadenza, Integer val_quantity, Integer val_scadenza){
         ContentValues values = new ContentValues();
         values.put(NOTIFICHE_QUANTITY, quantity);
         values.put(NOTIFICHE_SCADENZA, scadenza);
         values.put(VALORE_NOTIFICHE_QUANTITY, val_quantity);
         values.put(VALORE_NOTIFICHE_SCADENZA, val_scadenza);
-        return database.update(NOTIFICHE_TABLE, values, NOTIFICHE_ID + " = " + id_notifiche, null)>0;
+        database.update(NOTIFICHE_TABLE, values, NOTIFICHE_ID + " = " + id_notifiche, null);
+    }
+
+    public void updateNotificheData(Integer id_notifiche, Long data){
+        ContentValues values = new ContentValues();
+        values.put(NOTIFICHE_DATE, data);
+        database.update(NOTIFICHE_TABLE, values, NOTIFICHE_ID + " = " + id_notifiche, null);
+    }
+
+    public Cursor getProductNotificheScadenza(Long data){
+        return database.query(DATABASE_TABLE, new String[] {PRODUCT_NAME, PRODUCT_EXPIREDATE}, PRODUCT_EXPIREDATE + " <= " + data, null, null, null, PRODUCT_EXPIREDATE);
+    }
+
+    public Cursor getProductNotificheQuantita(int quantita){
+        return database.query(DATABASE_TABLE, new String[] {PRODUCT_NAME, PRODUCT_QUANTITY}, PRODUCT_QUANTITY + " = " + quantita, null, null, null, PRODUCT_QUANTITY);
     }
 
     public boolean setOpen(long id_prodotto) {
@@ -180,6 +193,7 @@ public class DatabaseWrapper {
         ContentValues values = new ContentValues();
         values.put(PRODUCT_VALUE, value);
         values.put(PRODUCT_QUANTITY, qta);
+        values.put(PRODUCT_ISOPEN, false);
         return database.update(DATABASE_TABLE, values, PRODUCT_ID + "=" + id_prodotto, null)>0;
     }
 
