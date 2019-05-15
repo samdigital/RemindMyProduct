@@ -81,5 +81,10 @@
     <string name="channel_name">Canale notifica</string>
     <string name="channel_description">Questo è il canale</string>
     <string name="no_product_expiring">Nessun prodotto in scadenza!</string>
+    <string name="notify_title_expiring">SCADENZA DI:</string>
+    <string name="notify_text_expiring">La data di scadenza è:</string>
+    <string name="notify_title_quantity">PRODOTTO:</string>
+    <string name="notify_text_quantity_1">Mancano</string>
+    <string name="notify_text_quantity_2">elementi</string>
 
 </resources>
