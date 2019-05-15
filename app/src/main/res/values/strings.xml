@@ -80,5 +80,6 @@
     </string-array>
     <string name="channel_name">Canale notifica</string>
     <string name="channel_description">Questo è il canale</string>
+    <string name="no_product_expiring">Nessun prodotto in scadenza!</string>
 
 </resources>

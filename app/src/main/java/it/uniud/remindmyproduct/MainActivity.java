@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
         if (cursor.moveToNext()) {
             prodotto1.setText("- " + cursor.getString(cursor.getColumnIndex(DatabaseWrapper.PRODUCT_NAME)));
         } else {
-            prodotto1.setText("Nessun prodotto in scadenza!");
+            prodotto1.setText(getString(R.string.no_product_expiring));
         }
         if (cursor.moveToNext()) {
             prodotto2.setText("- " + cursor.getString(cursor.getColumnIndex(DatabaseWrapper.PRODUCT_NAME)));
