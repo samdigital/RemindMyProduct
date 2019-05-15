@@ -97,7 +97,6 @@ public class AddProdottoActivity extends AppCompatActivity implements AdapterVie
                     isData = true;
                 }
 
-
                 if (isData == true){
                     int giornoscad = (int) giorno.getSelectedItem();
                     int mesescad = mese.getSelectedItemPosition();
@@ -110,7 +109,6 @@ public class AddProdottoActivity extends AppCompatActivity implements AdapterVie
                         isData = false;
                     }
                 }
-
 
                 if (!(isNome || isQuantita || isPrezzo || !isData)){
                     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -127,7 +125,6 @@ public class AddProdottoActivity extends AppCompatActivity implements AdapterVie
                     Toast.makeText(getApplicationContext(), nome.getText().toString()+" "+getString(R.string.added_to_dispensa), Toast.LENGTH_SHORT).show();
                     finish();
                 }
-
             }
         });
 

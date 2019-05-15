@@ -15,6 +15,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -173,6 +174,9 @@ public class MainActivity extends AppCompatActivity {
             }
             int giorno = data.getDate();
 
+            //Log.d("Metodo",""+giorno_locale);
+            //Log.d("Salvato",""+giorno);
+
             if(giorno != giorno_locale) {
 
                 String CHANNEL_ID = "Canale";
@@ -207,8 +211,8 @@ public class MainActivity extends AppCompatActivity {
                         String valore = getDateString(cursorS.getLong(cursorS.getColumnIndex(DatabaseWrapper.PRODUCT_EXPIREDATE)));
 
 
-                        String textTitle = getString(R.string.notify_title_expiring) + nome;
-                        String textContent = getString(R.string.notify_text_expiring) + valore;
+                        String textTitle = "SCADENZA DI: " + nome;
+                        String textContent = "La data di scadenza è: " + valore;
 
                         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
                                 .setSmallIcon(R.drawable.icon_notifica)
@@ -241,8 +245,8 @@ public class MainActivity extends AppCompatActivity {
                         String valore = String.valueOf(cursorQ.getInt(cursorQ.getColumnIndex(DatabaseWrapper.PRODUCT_QUANTITY)));
 
 
-                        String textTitle = getString(R.string.notify_title_quantity) + nome;
-                        String textContent = getString(R.string.notify_text_quantity_1) + " " + valore + " " + getString(R.string.notify_text_quantity_2);
+                        String textTitle = "PRODOTTO: " + nome;
+                        String textContent = "Mancano " + valore + " elementi";
 
                         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
                                 .setSmallIcon(R.drawable.icon_notifica)
