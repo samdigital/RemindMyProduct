@@ -174,8 +174,6 @@ public class MainActivity extends AppCompatActivity {
             }
             int giorno = data.getDate();
 
-            //Log.d("Metodo",""+giorno_locale);
-            //Log.d("Salvato",""+giorno);
 
             if(giorno != giorno_locale) {
 
@@ -211,8 +209,8 @@ public class MainActivity extends AppCompatActivity {
                         String valore = getDateString(cursorS.getLong(cursorS.getColumnIndex(DatabaseWrapper.PRODUCT_EXPIREDATE)));
 
 
-                        String textTitle = "SCADENZA DI: " + nome;
-                        String textContent = "La data di scadenza è: " + valore;
+                        String textTitle = getString(R.string.notify_expiring_title) + " " + nome;
+                        String textContent = getString(R.string.notify_expiring_text) + " " + valore;
 
                         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
                                 .setSmallIcon(R.drawable.icon_notifica)
@@ -245,11 +243,11 @@ public class MainActivity extends AppCompatActivity {
                         String valore = String.valueOf(cursorQ.getInt(cursorQ.getColumnIndex(DatabaseWrapper.PRODUCT_QUANTITY)));
 
 
-                        String textTitle = "PRODOTTO: " + nome;
-                        String textContent = "Mancano " + valore + " elementi";
+                        String textTitle = getString(R.string.notify_quantity_title) + nome;
+                        String textContent = getString(R.string.notify_quantity_text_1) + " " + valore + " " + getString(R.string.notify_quantity_text_2);
 
                         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
-                                .setSmallIcon(R.drawable.icon_notifica)
+                                .setSmallIcon(R.mipmap.ic_launcher)
                                 .setContentTitle(textTitle)
                                 .setContentText(textContent)
                                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
