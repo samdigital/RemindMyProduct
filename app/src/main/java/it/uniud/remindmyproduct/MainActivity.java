@@ -213,7 +213,7 @@ public class MainActivity extends AppCompatActivity {
                         String textContent = getString(R.string.notify_expiring_text) + " " + valore;
 
                         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
-                                .setSmallIcon(R.drawable.icon_notifica)
+                                .setSmallIcon(R.drawable.icon_remind_black_per_notifiche)
                                 .setContentTitle(textTitle)
                                 .setContentText(textContent)
                                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
