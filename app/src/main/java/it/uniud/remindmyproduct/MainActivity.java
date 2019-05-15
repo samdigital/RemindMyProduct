@@ -164,8 +164,8 @@ public class MainActivity extends AppCompatActivity {
 
         if (bool_scadenza || bool_quantita){
 
-            Date data_locale = new Date();
-            int giorno_locale = data_locale.getDate();
+            Date data_odierna = new Date();
+            int giorno_locale = data_odierna.getDate();
             Date data = new Date();
             try {
                 data = (getDate(cursor.getLong(cursor.getColumnIndex(DatabaseWrapper.NOTIFICHE_DATE))));
@@ -177,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
 
             if(giorno != giorno_locale) {
 
-                String CHANNEL_ID = "Canale";
+                String CHANNEL_ID = getString(R.string.channel_name);
 
                 // Creazione canale notifiche
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -194,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if (bool_scadenza){
 
-                    Long data_confronto = data_locale.getTime() + (scadenza * 24 * 60 * 60 * 1000);
+                    Long data_confronto = data_odierna.getTime() + (scadenza * 24 * 60 * 60 * 1000);
                     Cursor cursorS = dbWrapper.getProductNotificheScadenza(data_confronto);
 
                     while (cursorS.moveToNext()) {
@@ -263,7 +263,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
-            dbWrapper.updateNotificheData(id_notifiche,data_locale.getTime());
+            dbWrapper.updateNotificheData(id_notifiche,data_odierna.getTime());
 
         }
 
