@@ -61,25 +61,6 @@ public class NotificheActivity extends AppCompatActivity {
 
         cursor.close();
 
-        /*
-        scadenza.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                valore_notifiche_scadenza = Integer.valueOf(scadenza.getText().toString());
-                dbWrapper.updateNotifiche(id_notifiche, notifiche_quantita, notifiche_scadenza, valore_notifiche_quantita, valore_notifiche_scadenza);
-            }
-        });
-
-
-        quantita.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                valore_notifiche_quantita = Integer.valueOf(quantita.getText().toString());
-                dbWrapper.updateNotifiche(id_notifiche, notifiche_quantita, notifiche_scadenza, valore_notifiche_quantita, valore_notifiche_scadenza);
-            }
-        });
-        */
-
         scadenzabool.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,6 +91,7 @@ public class NotificheActivity extends AppCompatActivity {
         valore_notifiche_scadenza = Integer.valueOf(scadenza.getText().toString());
         valore_notifiche_quantita = Integer.valueOf(quantita.getText().toString());
         dbWrapper.updateNotifiche(id_notifiche, notifiche_quantita, notifiche_scadenza, valore_notifiche_quantita, valore_notifiche_scadenza);
+        dbWrapper.close();
     }
 
 }

@@ -164,22 +164,17 @@ public class MainActivity extends AppCompatActivity {
 
         if (bool_scadenza || bool_quantita){
 
-            Date data_locale = new Date();
-            int giorno_locale = data_locale.getDate();
+            Date data_odierna = new Date();
             Date data = new Date();
             try {
                 data = (getDate(cursor.getLong(cursor.getColumnIndex(DatabaseWrapper.NOTIFICHE_DATE))));
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            int giorno = data.getDate();
 
-            //Log.d("Metodo",""+giorno_locale);
-            //Log.d("Salvato",""+giorno);
+            if(data.getDate() != data_odierna.getDate()) {
 
-            if(giorno != giorno_locale) {
-
-                String CHANNEL_ID = "Canale";
+                String CHANNEL_ID = getString(R.string.channel);
 
                 // Creazione canale notifiche
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -196,7 +191,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if (bool_scadenza){
 
-                    Long data_confronto = data_locale.getTime() + (scadenza * 24 * 60 * 60 * 1000);
+                    Long data_confronto = data_odierna.getTime() + (scadenza * 24 * 60 * 60 * 1000);
                     Cursor cursorS = dbWrapper.getProductNotificheScadenza(data_confronto);
 
                     while (cursorS.moveToNext()) {
@@ -210,9 +205,8 @@ public class MainActivity extends AppCompatActivity {
                         String nome = cursorS.getString(cursorS.getColumnIndex(DatabaseWrapper.PRODUCT_NAME));
                         String valore = getDateString(cursorS.getLong(cursorS.getColumnIndex(DatabaseWrapper.PRODUCT_EXPIREDATE)));
 
-
-                        String textTitle = "SCADENZA DI: " + nome;
-                        String textContent = "La data di scadenza è: " + valore;
+                        String textTitle = getString(R.string.titolo_notifiche_scadenza) + " " + nome;
+                        String textContent = getString(R.string.contenuto_notifiche_scadenza) + " " + valore;
 
                         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
                                 .setSmallIcon(R.drawable.icon_notifica)
@@ -244,9 +238,8 @@ public class MainActivity extends AppCompatActivity {
                         String nome = cursorQ.getString(cursorQ.getColumnIndex(DatabaseWrapper.PRODUCT_NAME));
                         String valore = String.valueOf(cursorQ.getInt(cursorQ.getColumnIndex(DatabaseWrapper.PRODUCT_QUANTITY)));
 
-
-                        String textTitle = "PRODOTTO: " + nome;
-                        String textContent = "Mancano " + valore + " elementi";
+                        String textTitle = getString(R.string.titolo_notifiche_quantita) + " " + nome;
+                        String textContent = getString(R.string.contenuto_notifiche_quantita) + " " + valore + " " + getString(R.string.elemento);
 
                         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
                                 .setSmallIcon(R.drawable.icon_notifica)
@@ -260,15 +253,11 @@ public class MainActivity extends AppCompatActivity {
 
                         notificationManager.notify(notificationId, builder.build());
                     }
-
                     cursorQ.close();
                 }
             }
-
-            dbWrapper.updateNotificheData(id_notifiche,data_locale.getTime());
-
+            dbWrapper.updateNotificheData(id_notifiche,data_odierna.getTime());
         }
-
         cursor.close();
     }
 
