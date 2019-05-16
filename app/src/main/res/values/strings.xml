@@ -86,5 +86,6 @@
     <string name="notify_quantity_title">PRODOTTO:</string>
     <string name="notify_quantity_text_1">Mancano</string>
     <string name="notify_quantity_text_2">elementi</string>
+    <string name="filter">Filtra per categoria</string>
 
 </resources>
