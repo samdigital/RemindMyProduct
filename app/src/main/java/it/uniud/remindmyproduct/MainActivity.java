@@ -15,7 +15,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -243,11 +242,11 @@ public class MainActivity extends AppCompatActivity {
                         String valore = String.valueOf(cursorQ.getInt(cursorQ.getColumnIndex(DatabaseWrapper.PRODUCT_QUANTITY)));
 
 
-                        String textTitle = getString(R.string.notify_quantity_title) + nome;
+                        String textTitle = getString(R.string.notify_quantity_title) + " " + nome;
                         String textContent = getString(R.string.notify_quantity_text_1) + " " + valore + " " + getString(R.string.notify_quantity_text_2);
 
                         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
-                                .setSmallIcon(R.mipmap.ic_launcher)
+                                .setSmallIcon(R.drawable.icon_remind_black_per_notifiche)
                                 .setContentTitle(textTitle)
                                 .setContentText(textContent)
                                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
