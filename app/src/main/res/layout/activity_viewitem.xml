@@ -19,7 +19,6 @@
         app:layout_constraintTop_toTopOf="parent"
         />
 
-
     <TextView
         android:id="@+id/productname"
         android:layout_width="wrap_content"
@@ -73,10 +72,6 @@
         app:layout_constraintStart_toEndOf="@+id/productquantity_label"
         app:layout_constraintTop_toBottomOf="@+id/productdescription" />
 
-
-
-
-
     <TextView
         android:id="@+id/productscadenza_label"
         android:layout_width="wrap_content"
@@ -100,10 +95,6 @@
         app:layout_constraintStart_toEndOf="@+id/productscadenza_label"
         app:layout_constraintTop_toBottomOf="@+id/productquantity_label" />
 
-
-
-
-
     <TextView
         android:id="@+id/productprice_label"
         android:layout_width="wrap_content"
@@ -126,10 +117,6 @@
         android:text="@string/placeholder_valore"
         app:layout_constraintStart_toEndOf="@+id/productprice_label"
         app:layout_constraintTop_toBottomOf="@+id/productscadenza_label" />
-
-
-
-
 
     <TextView
         android:id="@+id/productinserted_label"

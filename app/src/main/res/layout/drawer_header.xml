@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="20dp"
@@ -16,7 +15,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="Remind My Product"
+        android:text="@string/app_name"
         android:textSize="20dp"
         android:background="@android:color/holo_orange_light"
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
@@ -24,19 +23,19 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="15dp"
-        android:text="Progetto di Design of Mobile Applications"
+        android:text="@string/progetto"
         android:textSize="10dp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="15dp"
-        android:text="a cura di Paolo De Reggi e Samuele Ziero"
+        android:text="@string/nomi_autori"
         android:textSize="10dp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="18dp"
-        android:text="dereggi.paolo@spes.uniud.it ziero.samuele@spes.uniud.it"
+        android:text="@string/email"
         android:textSize="8dp" />
 
 </LinearLayout>

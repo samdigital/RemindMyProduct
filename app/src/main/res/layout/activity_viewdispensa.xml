@@ -70,7 +70,7 @@
         android:id="@+id/barraRicerca"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:queryHint="Cerca Prodotto"
+        android:queryHint="@string/ricerca"
         android:iconifiedByDefault="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nomeCategoria" />

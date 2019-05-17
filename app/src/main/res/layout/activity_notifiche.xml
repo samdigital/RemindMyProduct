@@ -93,7 +93,6 @@
             android:textSize="18dp"
             app:layout_constraintBottom_toBottomOf="@+id/quantitaon"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/quantitaon"
             app:layout_constraintTop_toTopOf="@+id/quantitaon" />
 

@@ -87,5 +87,12 @@
     <string name="notify_quantity_text_1">Mancano</string>
     <string name="notify_quantity_text_2">elementi</string>
     <string name="filter">Filtra per categoria</string>
+    <string name="ricerca">Cerca Prodotto</string>
+    <string name="progetto">Progetto di Design of Mobile Applications</string>
+    <string name="nomi_autori">a cura di Paolo De Reggi e Samuele Ziero</string>
+    <string name="email">dereggi.paolo@spes.uniud.it ziero.samuele@spes.uniud.it</string>
+    <string name="drawer_dispensa">La Mia Dispensa</string>
+    <string name="drawer_report">Report</string>
+    <string name="drawer_notifiche">Notifiche</string>
 
 </resources>

@@ -2,17 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:title="La Mia Dispensa"
+        android:title="@string/drawer_dispensa"
         android:id="@+id/drawer_dispensa"
         android:icon="@drawable/icon_lista"
         />
     <item
-        android:title="Report"
+        android:title="@string/drawer_report"
         android:id="@+id/drawer_report"
         android:icon="@drawable/icon_report"
         />
     <item
-        android:title="Notifiche"
+        android:title="@string/drawer_notifiche"
         android:id="@+id/drawer_notifica"
         android:icon="@drawable/icon_notifica"
         />

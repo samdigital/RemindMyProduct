@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:text="Filta per categoria"
+        android:text="@string/filter"
         app:layout_constraintBottom_toBottomOf="@+id/spinnerCategorie"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/spinnerCategorie" />
@@ -73,7 +73,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:iconifiedByDefault="false"
-        android:queryHint="Cerca Prodotto"
+        android:queryHint="@string/ricerca"
         app:layout_constraintBottom_toBottomOf="@+id/spinnerCategorie"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/spinnerCategorie"
