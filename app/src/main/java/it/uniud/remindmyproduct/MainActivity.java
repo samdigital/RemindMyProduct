@@ -167,17 +167,14 @@ public class MainActivity extends AppCompatActivity {
         if (bool_scadenza || bool_quantita){
 
             Date data_odierna = new Date();
-            int giorno_locale = data_odierna.getDate();
             Date data = new Date();
             try {
                 data = (getDate(cursor.getLong(cursor.getColumnIndex(DatabaseWrapper.NOTIFICHE_DATE))));
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            int giorno = data.getDate();
 
-
-            if(giorno != giorno_locale) {
+            if((data.getDate() != data_odierna.getDate()) || (data.getMonth() != data_odierna.getMonth()) || (data.getYear() != data_odierna.getYear())) {
 
                 String CHANNEL_ID = getString(R.string.channel_name);
 
@@ -194,6 +191,10 @@ public class MainActivity extends AppCompatActivity {
 
                 int notificationId = 1;
 
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+
                 if (bool_scadenza){
 
                     Long data_confronto = data_odierna.getTime() + (scadenza * 24 * 60 * 60 * 1000);
@@ -203,13 +204,8 @@ public class MainActivity extends AppCompatActivity {
 
                         notificationId += 1;
 
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
-
                         String nome = cursorS.getString(cursorS.getColumnIndex(DatabaseWrapper.PRODUCT_NAME));
                         String valore = getDateString(cursorS.getLong(cursorS.getColumnIndex(DatabaseWrapper.PRODUCT_EXPIREDATE)));
-
 
                         String textTitle = getString(R.string.notify_expiring_title) + " " + nome;
                         String textContent = getString(R.string.notify_expiring_text) + " " + valore;
@@ -237,13 +233,8 @@ public class MainActivity extends AppCompatActivity {
 
                         notificationId += 1;
 
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
-
                         String nome = cursorQ.getString(cursorQ.getColumnIndex(DatabaseWrapper.PRODUCT_NAME));
                         String valore = String.valueOf(cursorQ.getInt(cursorQ.getColumnIndex(DatabaseWrapper.PRODUCT_QUANTITY)));
-
 
                         String textTitle = getString(R.string.notify_quantity_title) + " " + nome;
                         String textContent = getString(R.string.notify_quantity_text_1) + " " + valore + " " + getString(R.string.notify_quantity_text_2);

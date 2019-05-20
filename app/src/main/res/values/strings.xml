@@ -79,7 +79,7 @@
         <item> Settembre </item> <item> Ottobre </item> <item> Novembre </item> <item> Dicembre </item>
     </string-array>
     <string name="channel_name">Canale notifica</string>
-    <string name="channel_description">Questo è il canale per le notifiche della app.</string>
+    <string name="channel_description">Questo è il canale per le notifiche della app</string>
     <string name="no_product_expiring">Nessun prodotto in scadenza!</string>
     <string name="notify_expiring_title">SCADENZA DI:</string>
     <string name="notify_expiring_text">La data di scadenza è:</string>
