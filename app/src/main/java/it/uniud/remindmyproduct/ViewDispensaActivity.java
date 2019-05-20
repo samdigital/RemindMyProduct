@@ -66,7 +66,7 @@ public class ViewDispensaActivity extends AppCompatActivity {
         categoriaSelezionata=0;
         popolaLista(categoriaSelezionata, "");
 
-        dbWrapper.open();
+        dbWrapper.open(); //Vedere qua
         Date today=new Date();
         Date yesterday=new Date();
         Date tomorrow=new Date();

@@ -32,7 +32,6 @@ public class ViewItemActivity extends AppCompatActivity {
     private TextView insertedDate;
     private TextView value;
 
-
     private DatabaseWrapper dbWrapper;
     private Cursor cursor;
 
@@ -86,7 +85,6 @@ public class ViewItemActivity extends AppCompatActivity {
                 if(isChecked) {
                     AlertDialog dialog = apri(buttonView);
                     dialog.show();
-                } else {
                 }
             }
         });

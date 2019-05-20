@@ -150,9 +150,12 @@ public class MainActivity extends AppCompatActivity {
         } else {
             prodotto3.setText("");
         }
+        cursor.close();
+        dbWrapper.close();
     }
 
     private void notifiche(){
+        dbWrapper.open();
         cursor = dbWrapper.getNotifiche();
         cursor.moveToFirst();
         int id_notifiche = cursor.getInt(cursor.getColumnIndex(DatabaseWrapper.NOTIFICHE_ID));
@@ -267,6 +270,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         cursor.close();
+        dbWrapper.close();
     }
 
     public static Date getDate(long milliSeconds) throws ParseException {
