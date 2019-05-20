@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -62,11 +61,9 @@ public class ViewDispensaActivity extends AppCompatActivity {
         popolaSpinnerCategorie();
         aggiungiListenerSpinner();
 
-        Log.d(TAG, "oncreate started");
         categoriaSelezionata=0;
         popolaLista(categoriaSelezionata, "");
 
-        // dbWrapper.open(); //Vedere qua
         Date today=new Date();
         Date yesterday=new Date();
         Date tomorrow=new Date();
@@ -148,8 +145,6 @@ public class ViewDispensaActivity extends AppCompatActivity {
     }
 
     private void popolaLista(int category, String filter) {
-        Log.d(TAG, "partita lista");
-
         nomi.clear();
         descrizioni.clear();
         pezzi.clear();
