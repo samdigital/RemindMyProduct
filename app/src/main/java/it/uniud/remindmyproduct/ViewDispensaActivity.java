@@ -66,7 +66,7 @@ public class ViewDispensaActivity extends AppCompatActivity {
         categoriaSelezionata=0;
         popolaLista(categoriaSelezionata, "");
 
-        dbWrapper.open(); //Vedere qua
+        // dbWrapper.open(); //Vedere qua
         Date today=new Date();
         Date yesterday=new Date();
         Date tomorrow=new Date();
@@ -135,7 +135,6 @@ public class ViewDispensaActivity extends AppCompatActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                //Toast.makeText(getApplicationContext(), String.valueOf(position), Toast.LENGTH_LONG).show();
                 categoriaSelezionata=position;
                 popolaLista(categoriaSelezionata, "");
                 barraRicerca.setQuery("", false);

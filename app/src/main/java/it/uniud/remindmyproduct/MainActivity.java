@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        setTitle(R.string.remind_my_product);
+        setTitle(R.string.app_name);
         dbWrapper = new DatabaseWrapper(this);
 
         viewInScadenza = findViewById(R.id.view_all);
